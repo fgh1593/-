@@ -4,11 +4,18 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
+html{
+	height: 100%
+}
+body{
+	height: 100%
+}
+
 div {
-	width: 40%;
-	height: 600px;
+	width: 42%;
+	height: 90%;
 	float: left;
-	margin : 50px;
+	margin : 4%;
 	text-align: center;
 	position: relative;
 }
@@ -16,25 +23,25 @@ div {
 
 div th{
 	text-align: center;
-	border-bottom:10px ;
+	font-size: 50%;
 }
 
 div td{
 	text-align: center;
-	border-bottom: 10px ;
+	font-size: 50%;
 }
 div span{
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	font-size: 20pt;
+	font-size: 100%;
 	color: red;
 }
 </style>
 </head>
 <body>
 <div>
-<h2>銷項發票</h2>
+<h3>銷項發票</h3>
 <table>
 	<tr>
 		<th>發票抬頭</th>
@@ -56,7 +63,7 @@ div span{
 <span class="total" th:text="${session.outTotal}"></span>
 </div>
 <div>
-<h2>進項發票</h2>
+<h3>進項發票</h3>
 <table>
 	<tr>
 		<th>發票抬頭</th>
