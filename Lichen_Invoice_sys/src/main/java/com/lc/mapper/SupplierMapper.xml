@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.mapper.SupplierMapper">
+	<resultMap id="BaseResultMap" type="com.lc.pojo.Supplier">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="supname" jdbcType="VARCHAR" property="supname" />
+		<result column="supid" jdbcType="VARCHAR" property="supid" />
+		<result column="supphone" jdbcType="VARCHAR"
+			property="supphone" />
+		<result column="suptitle" jdbcType="VARCHAR"
+			property="suptitle" />
+		<result column="suptaxnumber" jdbcType="VARCHAR"
+			property="suptaxnumber" />
+		<result column="supaddress" jdbcType="VARCHAR"
+			property="supaddress" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from supplier
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.lc.pojo.Supplier">
+		insert into supplier (id, supid ,supname, supphone,
+		suptitle, suptaxnumber, supaddress
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{supid,jdbcType=VARCHAR},#{supname,jdbcType=VARCHAR},
+		#{supphone,jdbcType=VARCHAR},
+		#{suptitle,jdbcType=VARCHAR}, #{suptaxnumber,jdbcType=VARCHAR}, #{supaddress,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.lc.pojo.Supplier">
+		update supplier
+		set supname = #{supname,jdbcType=VARCHAR},
+		supid = #{supid,jdbcType=VARCHAR},
+		supphone = #{supphone,jdbcType=VARCHAR},
+		suptitle = #{suptitle,jdbcType=VARCHAR},
+		suptaxnumber = #{suptaxnumber,jdbcType=VARCHAR},
+		supaddress = #{supaddress,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select id, supname,supid, supphone, suptitle, suptaxnumber, supaddress
+		from supplier
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, supid,supname, supphone, suptitle, suptaxnumber, supaddress
+		from supplier order by supid
+	</select>
+	<select id="selByBind" parameterType="java.lang.String"
+		resultType="com.lc.pojo.Supplier">
+		<bind name="searchSup" value="'%'+searchSup+'%'"></bind>
+		select * from supplier where supid like #{searchSup} or supname
+		like #{searchSup} or suptitle like #{searchSup} or suptaxnumber like
+		#{searchSup}
+	</select>
+
+
+</mapper>

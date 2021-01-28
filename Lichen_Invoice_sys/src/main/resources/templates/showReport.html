@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+div {
+	width: 40%;
+	height: 600px;
+	float: left;
+	margin : 50px;
+	text-align: center;
+	position: relative;
+}
+
+
+div th{
+	text-align: center;
+	border-bottom:10px ;
+}
+
+div td{
+	text-align: center;
+	border-bottom: 10px ;
+}
+div span{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 20pt;
+	color: red;
+}
+</style>
+</head>
+<body>
+<div>
+<h2>銷項發票</h2>
+<table>
+	<tr>
+		<th>發票抬頭</th>
+		<th>統一編號</th>
+		<th>發票時間</th>
+		<th>未稅金額</th>
+		<th>營業稅額</th>
+		<th>含稅金額</th>
+	</tr>
+	<tr th:each="i : ${session.invoiceReport}">
+		<td th:text="${i.customer.receipttitle}">
+		<td th:text="${i.customer.txidnumber}">
+		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
+		<td th:text="${i.taxexclude}">
+		<td th:text="${i.tax}">
+		<td th:text="${i.taxinclude}">
+	</tr>
+</table>&nbsp;
+<span class="total" th:text="${session.outTotal}"></span>
+</div>
+<div>
+<h2>進項發票</h2>
+<table>
+	<tr>
+		<th>發票抬頭</th>
+		<th>統一編號</th>
+		<th>發票時間</th>
+		<th>未稅金額</th>
+		<th>營業稅額</th>
+		<th>含稅金額</th>
+	</tr>
+	<tr th:each="i : ${session.incomeInvoiceReport}">
+		<td th:text="${i.supplier.suptitle}">
+		<td th:text="${i.supplier.suptaxnumber}">
+		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
+		<td th:text="${i.incometaxexclude}">
+		<td th:text="${i.incometax}">
+		<td th:text="${i.incometaxinclude}">
+	</tr>
+</table>
+<span class="total" th:text="${session.incomeTotal}"></span>
+</div>
+</body>
+</html>

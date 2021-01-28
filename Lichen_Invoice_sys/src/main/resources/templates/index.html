@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>利成發票系統</title>
+<link rel="stylesheet" type="text/css" href="/css/index.css" >
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" src="/js/index.js"></script>
+
+
+
+
+</head>
+<body>
+	<div>
+		<img src="/img/logo.png">
+	</div>
+	<div id="left">
+		<ul >
+			<li>
+			  <a href="JavaScript:" onclick="toInvoice()"><img src="/img/invoice.png"></a>
+			  <br>
+			  <font>發票列印</font>
+			</li>
+			<li>
+				<a href="JavaScript:" onclick="toIncomeInvoice()"><img src="/img/income-invoice.png"></a>
+				<br>
+				<font>進項發票</font>
+			</li>
+			<li>
+				<a href="JavaScript:" onclick="toCustomer()"><img src="/img/cus.png"></a>
+				<br>
+				<font>客戶管理</font>
+			</li>
+			<li>
+				<a href="JavaScript:" onclick="toSupplier()"><img src="/img/supplier.png"></a>
+				<br>
+				<font>廠商管理</font>
+			</li>
+			<li>
+				<a href="JavaScript:" onclick="toReport()"><img src="/img/record.png"></a>
+				<br>
+				<font>紀錄查詢</font>
+			</li>
+		</ul>
+		<div id="invoice">
+			客戶編號:<input type="text" name="lichenid" id="lichenid">
+			<br>
+			未稅金額:<input type="text" name="taxExclude" id="taxExclude">
+			<br>
+			<button onclick="getInvoice()" >輸入</button>
+		</div>
+		<div id="income-invoice">
+			廠商統編:<input type="text" name="suptaxnumber" id="suptaxnumber">
+			<br>
+			未稅金額:<input type="text" name="incomeTaxExclude" id="incomeTaxExclude">
+			<br>
+			發票開立時間:<input type="date" name="time" id="time">
+			<br>
+			<button onclick="getIncomeInvoice()" >輸入</button>
+		</div>
+		<div id="customer">
+			<button onclick="addCustomer()">新&nbsp;&nbsp;建&nbsp;&nbsp;客&nbsp;&nbsp;戶</button>
+			<br>
+			<br>
+			<br>
+			<br>
+			<button onclick="selectAllCus()">客戶列表</button>
+			<br>
+			<br>
+			<br>
+			<br>
+			客戶搜尋:<input type="text" id="searchCus" name="searchCus" placeholder="請輸入代號、統編或店家名稱" size="40"/>
+			<button onclick="searchCus()">搜尋</button>
+		</div>
+		<div id="supplier">
+			<button onclick="addSupplier()">新&nbsp;&nbsp;建&nbsp;&nbsp;廠&nbsp;&nbsp;商</button>
+			<br>
+			<br>
+			<br>
+			<br>
+			<button onclick="selectAllSup()">廠商列表</button>
+			<br>
+			<br>
+			<br>
+			<br>
+			廠商搜尋:<input type="text" id="searchSup" />
+			<button onclick="searchSup()">搜尋</button>
+		</div>
+		<div id="report">
+			紀錄搜尋
+			<br>
+			<br>
+			<br>
+			<br>
+			<input type="date" name="startTime" id="startTime"/>
+			&nbsp;&nbsp;至&nbsp;&nbsp;
+			<input type="date" name="endTime" id="endTime"/>
+			<br>
+			<br>
+			<br>
+			<br>
+			<button onclick="searchReport()">搜尋</button>
+		</div>
+	</div>
+	<div id="iframe"></div>
+
+</body>
+</html>

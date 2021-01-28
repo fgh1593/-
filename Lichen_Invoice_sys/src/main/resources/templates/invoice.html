@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Invoice</title>
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="/css/invoice.css" >
+<script type="text/javascript">
+function save(){
+	$.ajax({
+		url : 'saveInvoice',
+		data : {
+		},
+		dataType : 'html',
+		error : function() {
+			alert("系統錯誤")
+		},
+		success : function(data) {
+			alert(data);			
+		},
+		type : 'POST'
+	});
+}
+</script>
+</head>
+<body>
+	<div class="print">
+		<font size="3pt">利成塑膠廠</font><br> <font size="3pt">台南市安南區怡安路二段500號</font><br>
+		<font size="3pt">統一編號:19709855 TEL:06-2475328</font><br>
+		<font size="3pt"> &nbsp &nbsp &nbsp &nbsp &nbsp</font>
+			<font size="3pt"th:text="${#dates.format(session.invoice.time, 'yyyy-MM-dd HH:mm:ss')}"></font>
+		<font size="3pt">WP103S</font><br>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp &nbsp</font>
+		<font size="3.5pt" th:text="${session.invoice.customer.receipttitle}"></font><br>
+		<font size="3.5pt"> &nbsp &nbsp &nbsp &nbsp &nbsp</font>
+		<font size="3.5pt">統一編號:</font><font size="3.5pt" th:text="${session.invoice.customer.txidnumber}"></font><br>
+		<br>
+		<font size="3.5pt">品名____________數量________金額</font><br>
+		<font size="3.5pt">免洗餐具</font>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </font>
+		<font size="3.5pt">1</font>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp</font>
+		<font size="3.5pt" id="tot" th:text="${session.invoice.taxexclude}" ></font>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp &nbsp</font >
+		<font size="3.5pt" th:text="${session.invoice.taxexclude}"></font><br>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp &nbsp</font>
+		<font size="3.5pt" th:text="${session.invoice.tax}"></font><br>
+		<font size="3.5pt">&nbsp &nbsp &nbsp &nbsp &nbsp</font>
+		<font size="3.5pt" th:text="${session.invoice.taxinclude}"></font><br>
+		 
+	</div>
+	<div class="no-print">
+	<button onclick="print();save()" >列印發票並儲存</button>
+	<button onclick="print();">僅列印</button>
+	</div>
+	
+</body>
+</html>

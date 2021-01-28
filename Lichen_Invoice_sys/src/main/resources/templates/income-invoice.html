@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript">
+function save(){
+	$.ajax({
+		url : 'saveIncomeInvoice',
+		data : {
+		},
+		dataType : 'html',
+		error : function() {
+			alert("操作逾時")
+		},
+		success : function(data) {
+			alert(data);			
+		},
+		type : 'POST'
+	});
+}
+</script>
+</head>
+<body>
+<span th:text ="'廠商名稱:'+${session.incomeInvoice.supplier.supname}"></span>
+<br>
+<span th:text="'廠商抬頭:'+${session.incomeInvoice.supplier.suptitle}" ></span>
+<br>
+<span th:text="'廠商統編:'+${session.incomeInvoice.supplier.suptaxnumber}"></span>
+<br>
+<span th:text="'發票日期:'+${#dates.format(session.incomeInvoice.time, 'yyyy-MM-dd')}"></span>
+<br>
+<span th:text="'未稅金額:'+${session.incomeInvoice.incometaxexclude}"></span>
+<br>
+<span th:text="'稅金:'+${session.incomeInvoice.incometax}"></span>
+<br>
+<span th:text="'含稅金額:'+${session.incomeInvoice.incometaxinclude}"></span>
+<br>
+<button onclick="save()" >確認儲存</button>
+</body>
+</html>
