@@ -16,7 +16,6 @@ public interface CustomerMapper {
 
     int updateByPrimaryKey(Customer record);
     
-    @Select("select * from customer where lichenid = #{0}")
     Customer selectByLichenID(String lichenid);
     
     List<Customer> selByBind(String searchCus);

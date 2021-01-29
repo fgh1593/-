@@ -7,10 +7,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lc.pojo.Customer;
+import com.lc.pojo.InvoiceInfo;
 import com.lc.service.CustomerService;
 
 @Controller
@@ -57,4 +59,20 @@ public class CustomerController {
 		List<Customer> cusList = customerServiceImpl.selAll();
 		request.getSession().setAttribute("cusList", cusList);
 	}
+	
+	@RequestMapping("/selectByLcid")
+	@ResponseBody
+	public Object selectCustomerByLcid(String lichenid,HttpServletRequest request) {
+		if(lichenid==null || lichenid=="" || lichenid==" ") {
+			return "no";
+		}
+		Customer id = customerServiceImpl.selectByLichenID(lichenid);
+		if(id==null) {
+			return "no";
+		}
+		List<InvoiceInfo> info = id.getInvoiceInfo();
+		return info;
+	}
+	
+
 }

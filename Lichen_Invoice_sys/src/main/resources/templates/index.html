@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>利成發票系統</title>
 <link rel="stylesheet" type="text/css" href="/css/index.css" >
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8" src="/js/index.js"></script>
-
-
-
-
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
 </head>
 <body>
 	<div id="h">
@@ -43,13 +43,26 @@
 				<font>紀錄查詢</font>
 			</li>
 		</ul>
+		
 		<div id="invoice">
-			客戶編號:<input type="text" name="lichenid" id="lichenid">
+			客戶編號:<input type="text" name="lichenid" id="lichenid" onkeyup="getCustomer()">
+			<span id="wrongCus">查無此客戶</span>
 			<br>
-			未稅金額:<input type="text" name="taxExclude" id="taxExclude">
+			
+			統編抬頭:
+				<select id="selcus" >
+					<option value="">--</option>
+				</select>
+			<br>
+			發票品項:
+				<select id="selitem" >
+				</select>
+			<br>
+			未稅金額:<input type="text" name="taxExclude" id="taxExclude" >
 			<br>
 			<button onclick="getInvoice()" >輸入</button>
 		</div>
+		
 		<div id="income-invoice">
 			廠商統編:<input type="text" name="suptaxnumber" id="suptaxnumber">
 			<br>

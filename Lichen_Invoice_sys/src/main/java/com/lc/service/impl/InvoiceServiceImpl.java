@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lc.mapper.IncomeInvoiceMapper;
+import com.lc.mapper.InvoiceItemMapper;
 import com.lc.mapper.InvoiceMapper;
 import com.lc.pojo.IncomeInvoice;
 import com.lc.pojo.Invoice;
+import com.lc.pojo.InvoiceItem;
 import com.lc.service.invoiceService;
 
 @Service
@@ -22,6 +24,8 @@ public class InvoiceServiceImpl implements invoiceService {
 	private InvoiceMapper invoiceMapper;
 	@Autowired
 	private IncomeInvoiceMapper incomeInvoiceMapper;
+	@Autowired
+	private InvoiceItemMapper invoiceItemMapper;
 	
 	
 	/**
@@ -62,5 +66,13 @@ public class InvoiceServiceImpl implements invoiceService {
 	public List<IncomeInvoice> getIncomeInvoiceReport(String startTime, String endTime) {
 		return incomeInvoiceMapper.selectByDate(startTime, endTime);
 	}
+
+	@Override
+	public List<InvoiceItem> getInvoiceItems() {
+		
+		return invoiceItemMapper.selectAll();
+	}
+	
+	
 
 }

@@ -1,5 +1,7 @@
 package com.lc.pojo;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 
 public class Customer {
@@ -8,11 +10,7 @@ public class Customer {
     private String lichenid;
     @NotBlank
     private String storename;
-    @NotBlank
-    private String receipttitle;
-    @NotBlank
-    private String txidnumber;
-
+  
     private String storephone;
 
     private String shopmanager;
@@ -21,11 +19,22 @@ public class Customer {
 
     private String storeaddress;
 
-    private String receiptaddress;
 
     private String depositoryaddress;
+    
+    private List<InvoiceInfo> invoiceInfo;
+    
 
-    public Integer getId() {
+    
+    public List<InvoiceInfo> getInvoiceInfo() {
+		return invoiceInfo;
+	}
+
+	public void setInvoiceInfo(List<InvoiceInfo> invoiceInfos) {
+		this.invoiceInfo = invoiceInfos;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -49,21 +58,6 @@ public class Customer {
         this.storename = storename == null ? null : storename.trim();
     }
 
-    public String getReceipttitle() {
-        return receipttitle;
-    }
-
-    public void setReceipttitle(String receipttitle) {
-        this.receipttitle = receipttitle == null ? null : receipttitle.trim();
-    }
-
-    public String getTxidnumber() {
-        return txidnumber;
-    }
-
-    public void setTxidnumber(String txidnumber) {
-        this.txidnumber = txidnumber == null ? null : txidnumber.trim();
-    }
 
     public String getStorephone() {
         return storephone;
@@ -97,14 +91,7 @@ public class Customer {
         this.storeaddress = storeaddress == null ? null : storeaddress.trim();
     }
 
-    public String getReceiptaddress() {
-        return receiptaddress;
-    }
-
-    public void setReceiptaddress(String receiptaddress) {
-        this.receiptaddress = receiptaddress == null ? null : receiptaddress.trim();
-    }
-
+   
     public String getDepositoryaddress() {
         return depositoryaddress;
     }
@@ -112,4 +99,14 @@ public class Customer {
     public void setDepositoryaddress(String depositoryaddress) {
         this.depositoryaddress = depositoryaddress == null ? null : depositoryaddress.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", lichenid=" + lichenid + ", storename=" + storename + ", storephone="
+				+ storephone + ", shopmanager=" + shopmanager + ", shopmanagerphone=" + shopmanagerphone
+				+ ", storeaddress=" + storeaddress + ", depositoryaddress=" + depositoryaddress + ", invoiceInfo="
+				+ invoiceInfo + "]";
+	}
+    
+    
 }

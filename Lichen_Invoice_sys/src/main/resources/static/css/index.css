@@ -41,7 +41,7 @@ body{
 
 #left ul li font {
 	text-align: center;
-	font-size: 10%;
+	font-size: 80%;
 }
 
 #left ul li{
@@ -55,4 +55,11 @@ body{
 	display: none;
 	position :relative;
 	top: 20%;
+}
+
+
+
+#wrongCus{
+	diplay :none;
+	color: red;
 }

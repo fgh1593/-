@@ -3,6 +3,19 @@
  */
 
 function toInvoice() {
+	$.getJSON({
+		url: 'toInvoice',
+		
+		data: {
+		},
+		success: function(data) {
+			$("#selitem").html("");
+			var list=data;
+			for(var i=0;i<list.length;i++){
+				$("#selitem").append("<option value='"+list[i].name+"' >"+list[i].name+"</option>");
+			}
+		}
+	});
 	$("#left div").css("display", "none");
 	$("#invoice").css("display", "block");
 }
@@ -12,6 +25,7 @@ function toIncomeInvoice() {
 }
 
 function toCustomer() {
+	
 	$("#left div").css("display", "none");
 	$("#customer").css("display", "block");
 }
@@ -31,7 +45,9 @@ function getInvoice() {
 		url: 'getInvoice',
 		data: {
 			"lichenid": $("#lichenid").val(),
-			"taxExclude": $("#taxExclude").val()
+			"taxExclude": $("#taxExclude").val(),
+			"selcus": $("#selcus").val(),
+			"selitem": $("#selitem").val()
 		},
 		dataType: 'html',
 		error: function() {
@@ -47,6 +63,31 @@ function getInvoice() {
 
 		},
 		type: 'POST'
+	});
+}
+
+function getCustomer(){
+	$.getJSON({
+		url: 'selectByLcid',
+		data: {
+			"lichenid": $("#lichenid").val()
+		},
+		success: function(data) {
+			if (data == "no") {
+				$("#wrongCus").css("display","inline");
+			}
+		
+			if (data != "no") {
+				$("#wrongCus").css("display","none");
+				$("#selcus").html("");
+				var list=data;
+				for (i=0 ;i<list.length;i++){
+					$("#selcus").append("<option value='"+list[0].invoiceTitle+"'>"+list[0].invoiceTitle+"</option>");
+				}
+				
+			}
+
+		},
 	});
 }
 

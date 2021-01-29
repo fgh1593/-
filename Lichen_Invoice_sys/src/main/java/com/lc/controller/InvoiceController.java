@@ -20,6 +20,7 @@ import com.lc.mapper.SupplierMapper;
 import com.lc.pojo.Customer;
 import com.lc.pojo.IncomeInvoice;
 import com.lc.pojo.Invoice;
+import com.lc.pojo.InvoiceItem;
 import com.lc.pojo.Supplier;
 import com.lc.service.impl.InvoiceServiceImpl;
 
@@ -28,8 +29,7 @@ public class InvoiceController {
 	
 	@Autowired
 	private InvoiceServiceImpl invoiceServiceImpl; 
-	
-	
+		
 	@Autowired
 	private CustomerMapper customerMapper;
 	
@@ -56,7 +56,7 @@ public class InvoiceController {
 	 */
 	@RequestMapping("/getInvoice")
 	@ResponseBody
-	public String getInvoice(String lichenid, Integer taxExclude, HttpServletRequest request) {
+	public String getInvoice(String lichenid, Integer taxExclude,String selcus,String selitem ,HttpServletRequest request) {
 		Customer customer = customerMapper.selectByLichenID(lichenid);
 		
 		if (customer == null) {
@@ -164,5 +164,10 @@ public class InvoiceController {
 		request.getSession().setAttribute("incomeTotal",incomeTotal);
 	}
 	
-	
+	@RequestMapping("/toInvoice")
+	@ResponseBody
+	public List<InvoiceItem> toInvoice(HttpServletRequest request) {
+		List<InvoiceItem> invoiceItems = invoiceServiceImpl.getInvoiceItems();
+		return invoiceItems;
+	}
 }
