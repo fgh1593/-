@@ -20,21 +20,21 @@ div {
 	position: relative;
 }
 
-
-div th{
-	text-align: center;
-	font-size: 50%;
+div table{
+	width: 100%;
 }
 
-div td{
+div tr{
 	text-align: center;
-	font-size: 50%;
+	font-size: 90%;
 }
+
+
 div span{
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	font-size: 100%;
+	font-size: 120%;
 	color: red;
 }
 </style>
@@ -47,13 +47,15 @@ div span{
 		<th>發票抬頭</th>
 		<th>統一編號</th>
 		<th>發票時間</th>
+		<th>發票品項</th>
 		<th>未稅金額</th>
 		<th>營業稅額</th>
 		<th>含稅金額</th>
 	</tr>
 	<tr th:each="i : ${session.invoiceReport}">
-		<td th:text="${i.customer.receipttitle}">
-		<td th:text="${i.customer.txidnumber}">
+		<td th:text="${i.info.invoiceTitle}">
+		<td th:text="${i.info.txIDNumber}">
+		<td th:text="${i.invoiceItem.name}">
 		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
 		<td th:text="${i.taxexclude}">
 		<td th:text="${i.tax}">

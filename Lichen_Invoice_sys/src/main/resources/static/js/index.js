@@ -46,7 +46,7 @@ function getInvoice() {
 		data: {
 			"lichenid": $("#lichenid").val(),
 			"taxExclude": $("#taxExclude").val(),
-			"selcus": $("#selcus").val(),
+			"seltitle": $("#seltitle").val(),
 			"selitem": $("#selitem").val()
 		},
 		dataType: 'html',
@@ -66,7 +66,7 @@ function getInvoice() {
 	});
 }
 
-function getCustomer(){
+function getTitle(){
 	$.getJSON({
 		url: 'selectByLcid',
 		data: {
@@ -74,15 +74,17 @@ function getCustomer(){
 		},
 		success: function(data) {
 			if (data == "no") {
+			
 				$("#wrongCus").css("display","inline");
+				$("#seltitle").html("");
 			}
 		
 			if (data != "no") {
 				$("#wrongCus").css("display","none");
-				$("#selcus").html("");
+				$("#seltitle").html("");
 				var list=data;
 				for (i=0 ;i<list.length;i++){
-					$("#selcus").append("<option value='"+list[0].invoiceTitle+"'>"+list[0].invoiceTitle+"</option>");
+					$("#seltitle").append("<option value='"+list[i].invoiceTitle+"'>"+list[i].invoiceTitle+"</option>");
 				}
 				
 			}
@@ -124,6 +126,10 @@ function getIncomeInvoice() {
 
 function addCustomer() {
 	$("#iframe").html('<iframe src="/addCustomer" frameborder="no" width="100%" height="100%">');
+}
+
+function addInvoiceInfo() {
+	$("#iframe").html('<iframe src="/addInvoiceInfo" frameborder="no" width="100%" height="100%">');
 }
 
 function addSupplier() {

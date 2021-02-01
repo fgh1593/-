@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lc.mapper.IncomeInvoiceMapper;
+import com.lc.mapper.InvoiceInfoMapper;
 import com.lc.mapper.InvoiceItemMapper;
 import com.lc.mapper.InvoiceMapper;
 import com.lc.pojo.IncomeInvoice;
 import com.lc.pojo.Invoice;
+import com.lc.pojo.InvoiceInfo;
 import com.lc.pojo.InvoiceItem;
 import com.lc.service.invoiceService;
 
@@ -26,7 +28,10 @@ public class InvoiceServiceImpl implements invoiceService {
 	private IncomeInvoiceMapper incomeInvoiceMapper;
 	@Autowired
 	private InvoiceItemMapper invoiceItemMapper;
-	
+	@Autowired
+	private InvoiceInfoMapper invoiceInfoMapper;
+	@Autowired
+	private InvoiceItemMapper invoiceServiceImpl;
 	
 	/**
 	 *  將session中的發票儲存至資料庫，並判斷最後一筆發票資料有沒有重複
@@ -71,6 +76,23 @@ public class InvoiceServiceImpl implements invoiceService {
 	public List<InvoiceItem> getInvoiceItems() {
 		
 		return invoiceItemMapper.selectAll();
+	}
+
+	@Override
+	public InvoiceInfo getInfo(String title) {
+		
+		return invoiceInfoMapper.selectBytitle(title);
+	}
+
+	@Override
+	public InvoiceItem getItem(String itemName) {
+		return invoiceItemMapper.selectByName(itemName);
+	}
+
+	@Override
+	public int insertInvoiceInfo(InvoiceInfo info) {
+		int insertInfo = invoiceInfoMapper.insertInfo(info);
+		return insertInfo;
 	}
 	
 	

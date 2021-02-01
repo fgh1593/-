@@ -1,5 +1,6 @@
 package com.lc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,12 +63,14 @@ public class CustomerController {
 	@RequestMapping("/selectByLcid")
 	@ResponseBody
 	public Object selectCustomerByLcid(String lichenid,HttpServletRequest request) {
+		List<String> no=new ArrayList<String>();
+		no.add("no");
 		if(lichenid==null || lichenid=="" || lichenid==" ") {
-			return "no";
+			return no;
 		}
 		Customer id = customerServiceImpl.selectByLichenID(lichenid);
 		if(id==null) {
-			return "no";
+			return no;
 		}
 		List<InvoiceInfo> info = id.getInvoiceInfo();
 		return info;

@@ -45,7 +45,7 @@
     select *  from customer order by LichenID
   </select>
   
-  <select id="selByBind" parameterType="java.lang.String" resultType="com.lc.pojo.Customer">
+  <select id="selByBind" parameterType="java.lang.String" resultMap="BaseResultMap">
 	<bind name="searchCus" value="'%'+searchCus+'%'"></bind>
 	select * from customer where lichenid like #{searchCus} or storename like #{searchCus}  
 </select>

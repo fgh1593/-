@@ -3,7 +3,6 @@ package com.lc.mapper;
 import com.lc.pojo.Customer;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer id);

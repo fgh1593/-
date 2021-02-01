@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript">
+function save(){
+	$.ajax({
+		url : 'saveInvoiceInfo',
+		data : {
+			"lichenid" : $("#lichenid").val(),
+			"invoiceTitle" : $("#invoiceTitle").val(),
+			"txIDNumber" : $("#txIDNumber").val(),
+			"invoiceAddress" : $("#invoiceAddress").val(),
+		
+		},
+		dataType : 'html',
+		error : function() {
+			alert("尚有資料未填寫完全")
+		},
+		success : function(data) {
+			alert(data);
+			if(data=="儲存成功"){
+				location.reload(true);
+			}
+		},
+		type : 'POST'
+	});
+}
+</script>
+</head>
+<body>
+<body>
+客戶代號:<input name="lichenid" id="lichenid" autocomplete="off" ><br>
+發票抬頭:<input name="invoiceTitle" id="invoiceTitle" autocomplete="off" ><br>
+統一編號:<input name="txIDNumber" id="txIDNumber" autocomplete="off" ><br>
+發票地址:<input name="invoiceAddress" id="invoiceAddress" autocomplete="off" ><br>
+<button onclick="save()">確認儲存</button>
+</body>
+</body>
+</html>

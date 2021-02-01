@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.lc.pojo.IncomeInvoice;
 import com.lc.pojo.Invoice;
+import com.lc.pojo.InvoiceInfo;
 import com.lc.pojo.InvoiceItem;
 
 public interface invoiceService {
@@ -16,4 +17,7 @@ public interface invoiceService {
 	public List<Invoice> getInvoiceReport(String startTime,String endTime);
 	public List<IncomeInvoice> getIncomeInvoiceReport(String startTime,String endTime);
 	public List<InvoiceItem> getInvoiceItems();
+	public InvoiceInfo getInfo(String title);
+	public InvoiceItem getItem(String item);
+	public int insertInvoiceInfo(InvoiceInfo info);
 }

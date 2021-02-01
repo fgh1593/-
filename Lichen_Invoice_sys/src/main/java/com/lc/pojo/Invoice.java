@@ -5,7 +5,9 @@ import java.util.Date;
 public class Invoice {
     private Integer id;
 
-    private Integer cusid;
+    private Integer invoiceInfoID;
+    
+    private Integer invoiceItemID;
 
     private Date time;
 
@@ -15,16 +17,36 @@ public class Invoice {
 
     private Integer taxinclude;
     
-    private Customer customer;
+    private InvoiceInfo info;
+    
+    private InvoiceItem invoiceItem;
+    
+
     
     
 
-    public Customer getCustomer() {
-		return customer;
+	public InvoiceItem getInvoiceItem() {
+		return invoiceItem;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setInvoiceItem(InvoiceItem invoiceItem) {
+		this.invoiceItem = invoiceItem;
+	}
+
+	public Integer getInvoiceItemID() {
+		return invoiceItemID;
+	}
+
+	public void setInvoiceItemID(Integer invoiceItemID) {
+		this.invoiceItemID = invoiceItemID;
+	}
+
+	public InvoiceInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(InvoiceInfo info) {
+		this.info = info;
 	}
 
 	public Integer getId() {
@@ -35,13 +57,7 @@ public class Invoice {
         this.id = id;
     }
 
-    public Integer getCusid() {
-        return cusid;
-    }
-
-    public void setCusid(Integer cusid) {
-        this.cusid = cusid;
-    }
+ 
 
     public Date getTime() {
         return time;
@@ -75,11 +91,27 @@ public class Invoice {
         this.taxinclude = taxinclude;
     }
 
+	public Integer getInvoiceInfoID() {
+		return invoiceInfoID;
+	}
+
+	public void setInvoiceInfoID(Integer invoiceInfoID) {
+		this.invoiceInfoID = invoiceInfoID;
+	}
+
+	@Override
+	public String toString() {
+		return "Invoice [id=" + id + ", invoiceInfoID=" + invoiceInfoID + ", invoiceItemID=" + invoiceItemID + ", time="
+				+ time + ", taxexclude=" + taxexclude + ", tax=" + tax + ", taxinclude=" + taxinclude + ", info=" + info
+				+ ", invoiceItem=" + invoiceItem + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cusid == null) ? 0 : cusid.hashCode());
+		result = prime * result + ((invoiceInfoID == null) ? 0 : invoiceInfoID.hashCode());
+		result = prime * result + ((invoiceItemID == null) ? 0 : invoiceItemID.hashCode());
 		result = prime * result + ((tax == null) ? 0 : tax.hashCode());
 		result = prime * result + ((taxexclude == null) ? 0 : taxexclude.hashCode());
 		result = prime * result + ((taxinclude == null) ? 0 : taxinclude.hashCode());
@@ -95,10 +127,15 @@ public class Invoice {
 		if (getClass() != obj.getClass())
 			return false;
 		Invoice other = (Invoice) obj;
-		if (cusid == null) {
-			if (other.cusid != null)
+		if (invoiceInfoID == null) {
+			if (other.invoiceInfoID != null)
 				return false;
-		} else if (!cusid.equals(other.cusid))
+		} else if (!invoiceInfoID.equals(other.invoiceInfoID))
+			return false;
+		if (invoiceItemID == null) {
+			if (other.invoiceItemID != null)
+				return false;
+		} else if (!invoiceItemID.equals(other.invoiceItemID))
 			return false;
 		if (tax == null) {
 			if (other.tax != null)
@@ -118,12 +155,10 @@ public class Invoice {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Invoice [id=" + id + ", cusid=" + cusid + ", time=" + time + ", taxexclude=" + taxexclude + ", tax="
-				+ tax + ", taxinclude=" + taxinclude + ", customer=" + customer + "]";
-	}
 
+	
+
+	
 	
 
 	

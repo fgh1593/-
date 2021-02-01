@@ -45,12 +45,12 @@
 		</ul>
 		
 		<div id="invoice">
-			客戶編號:<input type="text" name="lichenid" id="lichenid" onkeyup="getCustomer()">
+			客戶編號:<input type="text" name="lichenid" id="lichenid" autocomplete="off"  onkeyup="getTitle()">
 			<span id="wrongCus">查無此客戶</span>
 			<br>
 			
 			統編抬頭:
-				<select id="selcus" >
+				<select id="seltitle" >
 					<option value="">--</option>
 				</select>
 			<br>
@@ -58,61 +58,45 @@
 				<select id="selitem" >
 				</select>
 			<br>
-			未稅金額:<input type="text" name="taxExclude" id="taxExclude" >
+			未稅金額:<input type="text" name="taxExclude" id="taxExclude" autocomplete="off" >
 			<br>
 			<button onclick="getInvoice()" >輸入</button>
 		</div>
 		
 		<div id="income-invoice">
-			廠商統編:<input type="text" name="suptaxnumber" id="suptaxnumber">
+			廠商統編:<input type="text" name="suptaxnumber" id="suptaxnumber" autocomplete="off">
 			<br>
-			未稅金額:<input type="text" name="incomeTaxExclude" id="incomeTaxExclude">
+			未稅金額:<input type="text" name="incomeTaxExclude" id="incomeTaxExclude" autocomplete="off">
 			<br>
-			發票開立時間:<input type="date" name="time" id="time">
+			發票開立時間:<input type="date" name="time" id="time" autocomplete="off">
 			<br>
 			<button onclick="getIncomeInvoice()" >輸入</button>
 		</div>
 		<div id="customer">
 			<button onclick="addCustomer()">新&nbsp;&nbsp;建&nbsp;&nbsp;客&nbsp;&nbsp;戶</button>
-			<br>
-			<br>
-			<br>
-			<br>
+			<br><br><br><br>
+			<button onclick="addInvoiceInfo()">新&nbsp;建&nbsp;發&nbsp;票&nbsp;訊&nbsp;息</button>
+			<br><br><br><br>
 			<button onclick="selectAllCus()">客戶列表</button>
-			<br>
-			<br>
-			<br>
-			<br>
-			客戶搜尋:<input type="text" id="searchCus" name="searchCus" placeholder="請輸入代號、統編或店家名稱" size="40"/>
+			<br><br><br><br>
+			客戶搜尋:<input type="text" id="searchCus" name="searchCus" placeholder="請輸入代號、統編或店家名稱" autocomplete="off" size="40"/>
 			<button onclick="searchCus()">搜尋</button>
 		</div>
 		<div id="supplier">
 			<button onclick="addSupplier()">新&nbsp;&nbsp;建&nbsp;&nbsp;廠&nbsp;&nbsp;商</button>
-			<br>
-			<br>
-			<br>
-			<br>
+			<br><br><br><br>
 			<button onclick="selectAllSup()">廠商列表</button>
-			<br>
-			<br>
-			<br>
-			<br>
-			廠商搜尋:<input type="text" id="searchSup" />
+			<br><br><br><br>
+			廠商搜尋:<input type="text" id="searchSup" autocomplete="off"/>
 			<button onclick="searchSup()">搜尋</button>
 		</div>
 		<div id="report">
 			紀錄搜尋
-			<br>
-			<br>
-			<br>
-			<br>
-			<input type="date" name="startTime" id="startTime"/>
+			<br><br><br><br>
+			<input type="date" name="startTime" id="startTime" autocomplete="off"/>
 			&nbsp;&nbsp;至&nbsp;&nbsp;
-			<input type="date" name="endTime" id="endTime"/>
-			<br>
-			<br>
-			<br>
-			<br>
+			<input type="date" name="endTime" id="endTime" autocomplete="off"/>
+			<br><br><br><br>
 			<button onclick="searchReport()">搜尋</button>
 		</div>
 	</div>
