@@ -44,4 +44,14 @@ public class SupplierServiceImpl implements SupplierService {
 		return supplierMapper.selectBySupID(supid);
 	}
 
+	@Override
+	public Supplier selectByPrimaryKey(Integer id) {
+		return supplierMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Integer updateSupplier(Supplier supplier) {
+		return supplierMapper.updateByPrimaryKey(supplier);
+	}
+
 }

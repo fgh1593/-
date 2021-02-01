@@ -30,8 +30,6 @@ public class InvoiceServiceImpl implements invoiceService {
 	private InvoiceItemMapper invoiceItemMapper;
 	@Autowired
 	private InvoiceInfoMapper invoiceInfoMapper;
-	@Autowired
-	private InvoiceItemMapper invoiceServiceImpl;
 	
 	/**
 	 *  將session中的發票儲存至資料庫，並判斷最後一筆發票資料有沒有重複
@@ -93,6 +91,12 @@ public class InvoiceServiceImpl implements invoiceService {
 	public int insertInvoiceInfo(InvoiceInfo info) {
 		int insertInfo = invoiceInfoMapper.insertInfo(info);
 		return insertInfo;
+	}
+
+	@Override
+	public int deleteInvoiceInfo(int id) {
+		
+		return invoiceInfoMapper.deleteByPrimaryKey(id);
 	}
 	
 	

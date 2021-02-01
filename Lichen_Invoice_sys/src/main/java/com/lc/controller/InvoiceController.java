@@ -207,4 +207,15 @@ public class InvoiceController {
 		
 		return "尚有資料未填寫";
 	}
+	
+	@RequestMapping("/deleteInvoiceInfo")
+	public String deleteInvoiceInfo(Integer id,Integer cid,HttpSession session) {
+		invoiceServiceImpl.deleteInvoiceInfo(id);
+		Customer customer = customerServiceImpl.selectByPrimayKey(cid);
+		List<Customer> cusList = customerServiceImpl.selAll();
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("customer", customer);
+		session.setAttribute("cusList", cusList);
+		return "/alterCustomer";
+	}
 }

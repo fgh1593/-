@@ -30,15 +30,14 @@ tr{
 	
 	<tr  th:each="c : ${session.cusList}">
 		<td>
-			<button>修改</button>
-			<button>詳細資料</button>
+			<a th:href="@{/toDetailCustomer(lichenid=${c.lichenid})}">詳細資料/修改</a>
 		</td>
 		<td th:text="${c.lichenid}"/> 
 		<td th:text="${c.storename}"/> 
 		<td>
 			<table>
 				<tr th:each="i : ${c.invoiceInfo}">
-					<td th:text="${i.invoiceTitle}+':'+${i.txIDNumber}"/>
+					<td th:text="${i.invoiceTitle}+'&nbsp;:&nbsp;'+${i.txIDNumber}"/>
 				</tr>
 			</table>
 		</td>

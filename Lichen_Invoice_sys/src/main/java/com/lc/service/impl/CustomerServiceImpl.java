@@ -39,5 +39,16 @@ private CustomerMapper customermapper;
 		return customermapper.selectAll();
 		
 	}
+
+	@Override
+	public int updateCustomer(Customer record) {
+		return customermapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public Customer selectByPrimayKey(Integer id) {
+		return customermapper.selectByPrimaryKey(id);
+	}
+	
 	
 }

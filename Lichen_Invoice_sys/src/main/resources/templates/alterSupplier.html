@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript">
+function saveAlter(){
+	$.ajax({
+		url: "/saveAlterSupplier",
+		data:{
+			"id" : $("#id").val(),
+			"supid" : $("#supid").val(),
+			"supname" : $("#supname").val(),
+			"supphone" : $("#supphone").val(),
+			"supaddress" : $("#supaddress").val(),
+			"suptitle" : $("#suptitle").val(),
+			"suptaxnumber" : $("#suptaxnumber").val(),
+		},
+		dataType: 'html',
+		error: function() {
+			alert("資訊未輸入完全");
+		},
+		success: function(data) {
+			alert(data);
+		},
+		type: 'GET'
+		
+	})
+}
+</script>
+</head>
+<body>
+		<input id="id" type="text" th:value="${session.supplier.id}" style="display:none"></input>
+		廠商代號:<input type="text" id="supid" th:value="${session.supplier.supid}"></input><br>
+		廠商名稱:<input type="text" id="supname" th:value="${session.supplier.supname}"></input><br>
+		廠商電話:<input type="text" id="supphone" th:value="${session.supplier.supphone}"></input><br>
+		廠商地址:<input type="text" id="supaddress" th:value="${session.supplier.supaddress}"></input><br>
+		發票抬頭:<input type="text" id="suptitle" th:value="${session.supplier.suptitle}"></input><br>
+		統一編號:<input type="text" id="suptaxnumber" th:value="${session.supplier.suptaxnumber}"></input><br>
+		<br>
+		<br>
+		<button onclick="saveAlter()">儲存變更</button>
+		<br>
+		<br>
+		<button onclick="location.href='/showSupplier'">返回</button>
+</body>
+</html>

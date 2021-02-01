@@ -3,6 +3,7 @@ package com.lc.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lc.pojo.Customer;
 import com.lc.pojo.Supplier;
 import com.lc.service.SupplierService;
 
@@ -57,8 +59,42 @@ public class SupplierController {
 	
 	@RequestMapping("/selectAllSup")
 	@ResponseBody
-	public void selectAllCus(HttpServletRequest request) {
+	public void selectAllCus(HttpSession session) {
 		List<Supplier> supList = supplierServiceImpl.selAll();
-		request.getSession().setAttribute("supList", supList);
+		
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("supList", supList);
+	}
+	
+	@RequestMapping("/toAlterSupplier")
+	public String toAlterSupplier(Integer id,HttpSession session) {
+		Supplier supplier = supplierServiceImpl.selectByPrimaryKey(id);
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("supplier", supplier);
+		return "/alterSupplier";
+	}
+	
+	/**
+	 * 修改廠商訊息
+	 */
+	@RequestMapping("/saveAlterSupplier")
+	@ResponseBody
+	public String saveAlterCustomer(Supplier supplier,HttpSession session) {
+		Supplier id = supplierServiceImpl.selectBySupID(supplier.getSupid());
+		//判斷廠商帶號是否已存在
+		if(id!=null && !id.getId().equals(supplier.getId())) {
+			return "廠商代號已存在，請更換其他代號";
+		}
+		//修改內容
+		Integer updateSupplier = supplierServiceImpl.updateSupplier(supplier);
+		if(updateSupplier==1) {
+			//重製session供畫面顯示
+			List<Supplier> supList = supplierServiceImpl.selAll();
+			session.setMaxInactiveInterval(3600);
+			session.setAttribute("supList", supList);
+			return "修改成功";
+		}
+		
+		return "尚有資料填寫不正確";
 	}
 }

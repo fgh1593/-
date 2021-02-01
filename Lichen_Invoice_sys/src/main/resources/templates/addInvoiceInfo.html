@@ -23,6 +23,8 @@ function save(){
 			alert(data);
 			if(data=="儲存成功"){
 				location.reload(true);
+				window.opener.reload();
+				window.close();
 			}
 		},
 		type : 'POST'

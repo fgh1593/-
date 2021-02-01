@@ -14,4 +14,8 @@ public interface SupplierService {
 	public List<Supplier> selAll();
 
 	public Supplier selectBySupID(String supid);
+	
+	public Supplier selectByPrimaryKey(Integer id);
+	
+	public Integer updateSupplier(Supplier supplier);
 }

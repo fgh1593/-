@@ -12,4 +12,8 @@ public interface CustomerService {
 	public List<Customer> selByBind(String searchCus);
 	
 	public List<Customer> selAll();
+	
+	public int updateCustomer(Customer record);
+	
+	public Customer selectByPrimayKey(Integer id);
 }

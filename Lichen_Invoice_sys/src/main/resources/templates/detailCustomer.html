@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>詳細資料</title>
+<style type="text/css">
+	table{
+		width :80%;
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+		客戶代號:<span th:text="${session.customer.lichenid}"></span><br>
+		客戶名稱:<span th:text="${session.customer.storename}"></span><br>
+		門市電話:<span th:text="${session.customer.storephone}"></span><br>
+		店長姓名:<span th:text="${session.customer.shopmanager}"></span><br>
+		店長電話:<span th:text="${session.customer.shopmanagerphone}"></span><br>
+		門市地址:<span th:text="${session.customer.storeaddress}"></span><br>
+		送貨地址:<span th:text="${session.customer.depositoryaddress}"></span><br>
+		<br>
+		<br>
+		發票資訊:
+		<table>
+		<tr>
+			<th>發票抬頭</th>
+			<th>統一編號</th>
+			<th>發票地址</th>
+		</tr>
+		<tr th:each="i : ${session.customer.invoiceInfo}">
+			<td th:text="${i.invoiceTitle}"/> 
+			<td th:text="${i.txIDNumber}"/> 
+			<td th:text="${i.invoiceAddress}"/> 
+		</tr>
+		</table>
+		<br>
+		<br>
+		<br>
+		<br>
+		<button onclick="location.href='/showCustomer'">返回</button>
+		<button onclick="location.href='/alterCustomer'">修改</button>
+		
+</body>
+</html>

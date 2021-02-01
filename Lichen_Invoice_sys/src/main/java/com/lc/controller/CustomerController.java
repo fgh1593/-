@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,10 @@ public class CustomerController {
 		request.getSession().setAttribute("cusList", cusList);
 	}
 	
+	/**
+	 * 判斷利成ID，獲取其發票資訊
+	 * @param lichenid
+	 */
 	@RequestMapping("/selectByLcid")
 	@ResponseBody
 	public Object selectCustomerByLcid(String lichenid,HttpServletRequest request) {
@@ -75,6 +80,59 @@ public class CustomerController {
 		List<InvoiceInfo> info = id.getInvoiceInfo();
 		return info;
 	}
+	
+	/**
+	 * 獲取表單的客戶代號，並獲取客戶，將其設置在request中，藉以進入頁面顯示詳細資料
+	 */
+	@RequestMapping("/toDetailCustomer")
+	public String toDetailCustomer(String lichenid,HttpServletRequest request) {
+		Customer customer = customerServiceImpl.selectByLichenID(lichenid);
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("customer", customer);
+		return "/detailCustomer";
+	}
+	
+	/**
+	 * 修改客戶訊息
+	 */
+	@RequestMapping("/saveAlterCustomer")
+	@ResponseBody
+	public String saveAlterCustomer(Customer customer,HttpSession session) {
+		Customer id = customerServiceImpl.selectByLichenID(customer.getLichenid());
+		//判斷利成編號是否已存在
+		if(id!=null && !id.getId().equals(customer.getId())) {
+			return "客戶代號已存在，請更換其他代號";
+		}
+		//修改內容
+		int updateCustomer = customerServiceImpl.updateCustomer(customer);
+		if(updateCustomer==1) {
+			//加入發票資訊
+			customer.setInvoiceInfo(((Customer) session.getAttribute("customer")).getInvoiceInfo());
+			//重製session供畫面顯示
+			List<Customer> cusList = customerServiceImpl.selAll();
+			session.setMaxInactiveInterval(3600);
+			session.setAttribute("customer", customer);
+			session.setAttribute("cusList", cusList);
+
+			return "修改成功";
+		}
+		
+		return "尚有資料填寫不正確";
+	}
+	
+	
+	@RequestMapping("/getSession")
+	@ResponseBody
+	public String getSession(Integer id,HttpSession session) {
+		Customer customer = customerServiceImpl.selectByPrimayKey(id);
+		List<Customer> cusList = customerServiceImpl.selAll();
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("customer", customer);
+		session.setAttribute("cusList", cusList);
+		return "成功";
+	}
+	
 	
 
 }

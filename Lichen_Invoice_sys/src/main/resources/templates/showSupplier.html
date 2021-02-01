@@ -4,21 +4,22 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
-th{
-	font-size: 80%;
-	width: 15%;
+table{
+	width: 100%;
+}
+
+tr{
+	font-size: 100%;
 	text-align: center;
 }
-td{
-	font-size: 80%;
-	width: 15%;
-	text-align: center;
-}
+
+
 </style>
 </head>
 <body>
 <table >
 	<tr>
+		<th>
 		<th>廠商代碼</th>
 		<th>廠商名稱</th>
 		<th>發票抬頭</th>
@@ -27,6 +28,9 @@ td{
 		<th>廠商地址</th>
 	</tr>
 	<tr th:each="s : ${session.supList}">
+		<td>
+			<a th:href="@{/toAlterSupplier(id=${s.id})}">修改</a>
+		</td>
 		<td th:text="${s.supid}"/> 
 		<td th:text="${s.supname}"/> 
 		<td th:text="${s.suptitle}"/> 

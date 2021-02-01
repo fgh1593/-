@@ -20,4 +20,5 @@ public interface invoiceService {
 	public InvoiceInfo getInfo(String title);
 	public InvoiceItem getItem(String item);
 	public int insertInvoiceInfo(InvoiceInfo info);
+	public int deleteInvoiceInfo(int id);
 }
