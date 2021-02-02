@@ -47,7 +47,7 @@
   
   <select id="selByBind" parameterType="java.lang.String" resultMap="BaseResultMap">
 	<bind name="searchCus" value="'%'+searchCus+'%'"></bind>
-	select * from customer where lichenid like #{searchCus} or storename like #{searchCus}  
+	select * from customer where lichenid like #{searchCus} or storename like #{searchCus} order by LichenID  
 </select>
 
   <select id="selectByLichenID" parameterType="java.lang.String" resultMap="BaseResultMap">

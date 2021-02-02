@@ -18,4 +18,6 @@ public interface SupplierService {
 	public Supplier selectByPrimaryKey(Integer id);
 	
 	public Integer updateSupplier(Supplier supplier);
+
+	public int deleteSupplier(Integer id);
 }

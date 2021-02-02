@@ -110,9 +110,6 @@ public class InvoiceController {
 		if(incomeTaxExclude==null) {
 			return "notax";
 		}
-		System.out.println(incomeTaxExclude);
-		System.out.println(time);
-		
 		IncomeInvoice incomeInvoice=new IncomeInvoice();
 		incomeInvoice.setSupplierid(supplier.getId());
 		incomeInvoice.setSupplier(supplier);
@@ -133,6 +130,7 @@ public class InvoiceController {
 
 	}
 	
+	
 	/**
 	 * 將session中的發票儲存至資料庫，返回字串給JS顯現
 	 */
@@ -142,6 +140,7 @@ public class InvoiceController {
 		return invoiceServiceImpl.saveInvoice(request);
 
 	}
+	
 	
 	/**
 	 * 將session中的進項發票儲存至資料庫，返回成功字串給JS顯現
@@ -153,11 +152,17 @@ public class InvoiceController {
 
 	}
 	
+	
+	/**
+	 * 在指定的範圍時間內，列出 進項發票 和 銷項發票的列表，並計算進項和銷項的總和金額。
+	 * @param startTime : 起始範圍時間
+	 * @param endTime : 結束範圍時間
+	 */
 	@RequestMapping("/searchReport")
 	@ResponseBody
 	public void searchReport(String startTime,String endTime,HttpServletRequest request) throws ParseException {
-		int outTotal=0;
-		int incomeTotal=0;
+		int outTotal=0; //銷項總和
+		int incomeTotal=0;//進項總和
 		List<IncomeInvoice> incomeInvoiceReport = invoiceServiceImpl.getIncomeInvoiceReport(startTime, endTime);
 		List<Invoice> invoiceReport = invoiceServiceImpl.getInvoiceReport(startTime, endTime);
 		for (IncomeInvoice incomeInvoice : incomeInvoiceReport) {
@@ -170,8 +175,37 @@ public class InvoiceController {
 		request.getSession().setAttribute("invoiceReport", invoiceReport);
 		request.getSession().setAttribute("outTotal",outTotal);
 		request.getSession().setAttribute("incomeTotal",incomeTotal);
+		request.getSession().setAttribute("startTime",startTime);
+		request.getSession().setAttribute("endTime",endTime);
 	}
 	
+	
+	
+	@RequestMapping("/deleteInvoice")
+	@ResponseBody
+	public String deleteInvoice(Integer id) {
+		int i = invoiceServiceImpl.deleteInvoice(id);
+		if(i==1) {
+			return "刪除成功";
+		}
+		return "系統錯誤";
+	}
+	
+	
+	
+	@RequestMapping("/deleteIncomeInvoice")
+	@ResponseBody
+	public String deleteIncomeInvoice(Integer id) {
+		int i=invoiceServiceImpl.deleteIncomeInvoice(id);
+		if(i==1) {
+			return "刪除成功";
+		}
+		return "系統錯誤";
+	}
+	
+	/**
+	 * 進入'發票列印'功能介面時，將'發票品項'內容讀取並傳至前台
+	 */
 	@RequestMapping("/toInvoice")
 	@ResponseBody
 	public List<InvoiceItem> toInvoice(HttpServletRequest request) {
@@ -208,14 +242,19 @@ public class InvoiceController {
 		return "尚有資料未填寫";
 	}
 	
+	
+	
 	@RequestMapping("/deleteInvoiceInfo")
+	@ResponseBody
 	public String deleteInvoiceInfo(Integer id,Integer cid,HttpSession session) {
-		invoiceServiceImpl.deleteInvoiceInfo(id);
+		int i = invoiceServiceImpl.deleteInvoiceInfo(id);
+		//取得新的客戶訊息以供刷新頁面資訊
 		Customer customer = customerServiceImpl.selectByPrimayKey(cid);
-		List<Customer> cusList = customerServiceImpl.selAll();
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("customer", customer);
-		session.setAttribute("cusList", cusList);
-		return "/alterCustomer";
+		if(i==1) {
+			return "刪除成功";
+		}
+		return "系統錯誤";
 	}
 }

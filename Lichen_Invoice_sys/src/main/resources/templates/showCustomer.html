@@ -30,7 +30,7 @@ tr{
 	
 	<tr  th:each="c : ${session.cusList}">
 		<td>
-			<a th:href="@{/toDetailCustomer(lichenid=${c.lichenid})}">詳細資料/修改</a>
+			<a th:href="@{/toAlterCustomer(lichenid=${c.lichenid})}">詳細資料/修改</a>
 		</td>
 		<td th:text="${c.lichenid}"/> 
 		<td th:text="${c.storename}"/> 

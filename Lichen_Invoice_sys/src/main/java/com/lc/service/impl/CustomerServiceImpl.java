@@ -49,6 +49,11 @@ private CustomerMapper customermapper;
 	public Customer selectByPrimayKey(Integer id) {
 		return customermapper.selectByPrimaryKey(id);
 	}
+
+	@Override
+	public int deleteCustomer(Integer id) {
+		return customermapper.deleteByPrimaryKey(id);
+	}
 	
 	
 }

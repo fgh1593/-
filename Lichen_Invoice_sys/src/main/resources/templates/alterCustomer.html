@@ -4,60 +4,17 @@
 <meta charset="UTF-8">
 <title>詳細資料</title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/alterCustomer.js" charset="utf-8"></script>
 <style type="text/css">
 	table{
 		width :80%;
 		text-align: center;
 	}
 </style>
-<script type="text/javascript">
-function saveAlter(){
-	$.ajax({
-		url: "/saveAlterCustomer",
-		data:{
-			"id" : $("#id").val(),
-			"lichenid" : $("#lichenid").val(),
-			"storename" : $("#storename").val(),
-			"storephone" : $("#storephone").val(),
-			"shopmanager" : $("#shopmanager").val(),
-			"shopmanagerphone" : $("#shopmanagerphone").val(),
-			"storeaddress" : $("#storeaddress").val(),
-			"depositoryaddress" : $("#depositoryaddress").val()
-		},
-		dataType: 'html',
-		error: function() {
-			alert("資訊未輸入完全");
-		},
-		success: function(data) {
-			alert(data);
-		
-		},
-		type: 'GET'
-		
-	})
-}
-
-function reload(){
-	$.ajax({
-		url:"/getSession",
-		dataType: 'html',
-		type: 'GET',
-		data:{
-			"id" : $("#id").val()
-		},
-		error: function() {
-			alert("系統錯誤")
-		},
-		success: function(data) {
-			location.reload(true);
-		}
-	});
-}
-
-</script>
 </head>
 <body>
 		<input id="id" type="text" th:value="${session.customer.id}" style="display:none"></input>
+		<input id="searchCus" type="text" th:value="${session.searchCus}" style="display:none"></input>
 		客戶代號:<input type="text" id="lichenid" th:value="${session.customer.lichenid}"></input><br>
 		客戶名稱:<input type="text" id="storename" th:value="${session.customer.storename}"></input><br>
 		門市電話:<input type="text" id="storephone" th:value="${session.customer.storephone}"></input><br>
@@ -80,7 +37,7 @@ function reload(){
 		</tr>
 		<tr th:each="i : ${session.customer.invoiceInfo}">
 			<td>
-			<a th:href="@{/deleteInvoiceInfo(id=${i.id},cid=${i.cid})}">移除</a>
+			<button th:id="${i.id}" th:value="${i.cid}" onclick="deleteInvoiceInfo(this)">移除</button>
 			</td>
 			<td th:text="${i.invoiceTitle}"/> 
 			<td th:text="${i.txIDNumber}"/> 
@@ -93,8 +50,9 @@ function reload(){
 		</table>
 		<br>
 		<br>
+		<button onclick="deleteCustomer()">刪除客戶</button>
 		<br>
 		<br>
-		<button onclick="location.href='/detailCustomer'">返回詳細資料</button>
+		<button onclick="location.href='/showCustomer'">返回</button>
 </body>
 </html>

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+html{
+	height: 100%
+}
+body{
+	height: 100%
+}
+
+div {
+	width: 42%;
+	height: 90%;
+	float: left;
+	margin : 4%;
+	text-align: center;
+	position: relative;
+}
+
+div table{
+	width: 100%;
+}
+
+div tr{
+	text-align: center;
+	font-size: 90%;
+}
+
+
+div span{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 120%;
+	color: red;
+}

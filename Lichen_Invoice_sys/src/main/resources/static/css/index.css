@@ -20,14 +20,14 @@ body{
 
 
 #left {
-	width: 30%;
+	width: 20%;
 	height: 80%;
 	float: left;
 	text-align : center;
 }
 
 #iframe {
-	width: 65%;
+	width: 75%;
 	height: 80%;
 	float: left;
 }
@@ -47,8 +47,8 @@ body{
 #left ul li{
 	display: inline-block;
 	margin: 3%;
-	width: 10%;
-	height: 10%;
+	width: 20%;
+	height: 20%;
 }
 
 #left div{

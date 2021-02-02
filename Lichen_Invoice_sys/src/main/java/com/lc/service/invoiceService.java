@@ -21,4 +21,6 @@ public interface invoiceService {
 	public InvoiceItem getItem(String item);
 	public int insertInvoiceInfo(InvoiceInfo info);
 	public int deleteInvoiceInfo(int id);
+	public int deleteInvoice(Integer id);
+	public int deleteIncomeInvoice(Integer id);
 }

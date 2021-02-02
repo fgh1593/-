@@ -4,33 +4,10 @@
 <meta charset="UTF-8">
 <title></title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
-<script type="text/javascript">
-function saveAlter(){
-	$.ajax({
-		url: "/saveAlterSupplier",
-		data:{
-			"id" : $("#id").val(),
-			"supid" : $("#supid").val(),
-			"supname" : $("#supname").val(),
-			"supphone" : $("#supphone").val(),
-			"supaddress" : $("#supaddress").val(),
-			"suptitle" : $("#suptitle").val(),
-			"suptaxnumber" : $("#suptaxnumber").val(),
-		},
-		dataType: 'html',
-		error: function() {
-			alert("資訊未輸入完全");
-		},
-		success: function(data) {
-			alert(data);
-		},
-		type: 'GET'
-		
-	})
-}
-</script>
+<script type="text/javascript" src="/js/alterSupplier.js" charset="utf-8"></script>
 </head>
 <body>
+		<input id="searchSup" type="text" th:value="${session.searchSup}" style="display:none"></input>
 		<input id="id" type="text" th:value="${session.supplier.id}" style="display:none"></input>
 		廠商代號:<input type="text" id="supid" th:value="${session.supplier.supid}"></input><br>
 		廠商名稱:<input type="text" id="supname" th:value="${session.supplier.supname}"></input><br>
@@ -41,6 +18,9 @@ function saveAlter(){
 		<br>
 		<br>
 		<button onclick="saveAlter()">儲存變更</button>
+		<br>
+		<br>
+		<button onclick="deleteSupplier()">刪除廠商</button>
 		<br>
 		<br>
 		<button onclick="location.href='/showSupplier'">返回</button>

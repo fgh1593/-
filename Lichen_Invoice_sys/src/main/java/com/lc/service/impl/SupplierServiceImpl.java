@@ -54,4 +54,9 @@ public class SupplierServiceImpl implements SupplierService {
 		return supplierMapper.updateByPrimaryKey(supplier);
 	}
 
+	@Override
+	public int deleteSupplier(Integer id) {
+		return supplierMapper.deleteByPrimaryKey(id);
+	}
+
 }

@@ -45,13 +45,15 @@ public class SupplierController {
 	
 	@RequestMapping("/searchSupplier")
 	@ResponseBody
-	public String searchCustomer(String searchSup,HttpServletRequest request) {
+	public String searchCustomer(String searchSup,HttpSession session) {
 		
 		List<Supplier> supList = supplierServiceImpl.selByBind(searchSup);
 		if(supList.size()==0) {
 			return "no";
 		}
-		request.getSession().setAttribute("supList", supList);
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("searchSup", searchSup);
+		session.setAttribute("supList", supList);
 		return "yes";
 		
 	}
@@ -64,6 +66,7 @@ public class SupplierController {
 		
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("supList", supList);
+		session.setAttribute("searchSup", "");
 	}
 	
 	@RequestMapping("/toAlterSupplier")
@@ -89,12 +92,20 @@ public class SupplierController {
 		Integer updateSupplier = supplierServiceImpl.updateSupplier(supplier);
 		if(updateSupplier==1) {
 			//重製session供畫面顯示
-			List<Supplier> supList = supplierServiceImpl.selAll();
 			session.setMaxInactiveInterval(3600);
-			session.setAttribute("supList", supList);
 			return "修改成功";
 		}
 		
 		return "尚有資料填寫不正確";
+	}
+	
+	@RequestMapping("/deleteSupplier")
+	@ResponseBody
+	public String deleteSupplier(Integer id) {
+		int i = supplierServiceImpl.deleteSupplier(id);
+		if(i==1) {
+			return "刪除成功";
+		}
+		return "刪除失敗";
 	}
 }

@@ -98,6 +98,16 @@ public class InvoiceServiceImpl implements invoiceService {
 		
 		return invoiceInfoMapper.deleteByPrimaryKey(id);
 	}
+
+	@Override
+	public int deleteInvoice(Integer id) {
+		return invoiceMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int deleteIncomeInvoice(Integer id) {
+		return incomeInvoiceMapper.deleteByPrimaryKey(id);
+	}
 	
 	
 

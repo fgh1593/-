@@ -3,56 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style type="text/css">
-html{
-	height: 100%
-}
-body{
-	height: 100%
-}
-
-div {
-	width: 42%;
-	height: 90%;
-	float: left;
-	margin : 4%;
-	text-align: center;
-	position: relative;
-}
-
-div table{
-	width: 100%;
-}
-
-div tr{
-	text-align: center;
-	font-size: 90%;
-}
-
-
-div span{
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	font-size: 120%;
-	color: red;
-}
-</style>
+<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="/js/showReport.js"></script>
+<link href="/css/showReport.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div>
 <h3>銷項發票</h3>
 <table>
-	<tr>
+	<tr> 
+		<th></th>
 		<th>發票抬頭</th>
 		<th>統一編號</th>
-		<th>發票時間</th>
 		<th>發票品項</th>
+		<th>發票時間</th>
 		<th>未稅金額</th>
 		<th>營業稅額</th>
 		<th>含稅金額</th>
 	</tr>
 	<tr th:each="i : ${session.invoiceReport}">
+		<td><button   th:value="${i.id}" onclick="deleteInvoice(this)">移除</button></td>
 		<td th:text="${i.info.invoiceTitle}">
 		<td th:text="${i.info.txIDNumber}">
 		<td th:text="${i.invoiceItem.name}">
@@ -63,11 +33,13 @@ div span{
 	</tr>
 </table>&nbsp;
 <span class="total" th:text="${session.outTotal}"></span>
+
 </div>
 <div>
 <h3>進項發票</h3>
 <table>
 	<tr>
+		<th></th>
 		<th>發票抬頭</th>
 		<th>統一編號</th>
 		<th>發票時間</th>
@@ -76,6 +48,7 @@ div span{
 		<th>含稅金額</th>
 	</tr>
 	<tr th:each="i : ${session.incomeInvoiceReport}">
+		<td><button  th:value="${i.id}" onclick="deleteIncomeInvoice(this)">移除</button></td>
 		<td th:text="${i.supplier.suptitle}">
 		<td th:text="${i.supplier.suptaxnumber}">
 		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
@@ -86,5 +59,7 @@ div span{
 </table>
 <span class="total" th:text="${session.incomeTotal}"></span>
 </div>
+<input th:value="${session.startTime}" id="startTime" style="display: none;"/>
+<input th:value="${session.endTime}" id="endTime" style="display: none;"/>
 </body>
 </html>

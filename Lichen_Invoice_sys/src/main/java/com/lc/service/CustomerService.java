@@ -16,4 +16,6 @@ public interface CustomerService {
 	public int updateCustomer(Customer record);
 	
 	public Customer selectByPrimayKey(Integer id);
+
+	public int deleteCustomer(Integer id);
 }

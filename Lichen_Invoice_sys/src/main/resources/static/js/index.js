@@ -18,26 +18,53 @@ function toInvoice() {
 	});
 	$("#left div").css("display", "none");
 	$("#invoice").css("display", "block");
+	$("input").val("");
 }
 function toIncomeInvoice() {
 	$("#left div").css("display", "none");
 	$("#income-invoice").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
 }
 
 function toCustomer() {
 	
 	$("#left div").css("display", "none");
 	$("#customer").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
 }
 
 function toSupplier() {
 	$("#left div").css("display", "none");
 	$("#supplier").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
 }
 
 function toReport() {
 	$("#left div").css("display", "none");
 	$("#report").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
+}
+
+function toItem() {
+	$("#left div").css("display", "none");
+	$("input").val("");
+	$.ajax({
+		url: 'toInvoiceItem',
+		data: {
+		},
+		dataType: 'html',
+		error: function() {
+			alert("系統錯誤")
+		},
+		success: function() {
+				$("#iframe").html('<iframe src="/invoice-item" frameborder="no" width="100%" height="100%">');
+		},
+		type: 'GET'
+	});
 }
 
 function getInvoice() {

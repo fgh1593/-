@@ -39,7 +39,9 @@ public class CustomerController {
 		}
 	}
 	
-	
+	/**
+	 * 取得查詢條件的客戶列表資訊，並設置session，以供thymeleaf渲染數據
+	 */
 	@RequestMapping("/searchCustomer")
 	@ResponseBody
 	public String searchCustomer(String searchCus,HttpServletRequest request) {
@@ -48,17 +50,25 @@ public class CustomerController {
 		if(cusList.size()==0) {
 			return "no";
 		}
-		request.getSession().setAttribute("cusList", cusList);
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("cusList", cusList);//儲存搜尋列表資訊
+		session.setAttribute("searchCus", searchCus);//儲存搜尋資訊，此處空格代表搜尋所有，提供以後修改資訊時，刷新頁面所需數據
 		return "yes";
 		
 	}
 	
-	
+	/**
+	 * 取得全不客戶列表資訊，並設置session，以供thymeleaf渲染數據
+	 */
 	@RequestMapping("/selectAllCus")
 	@ResponseBody
 	public void selectAllCus(HttpServletRequest request) {
 		List<Customer> cusList = customerServiceImpl.selAll();
-		request.getSession().setAttribute("cusList", cusList);
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(3600);
+		session.setAttribute("cusList", cusList);//儲存搜尋列表資訊
+		session.setAttribute("searchCus", "");//儲存搜尋資訊，此處空格代表搜尋所有，提供以後修改資訊時，刷新頁面所需數據
 	}
 	
 	/**
@@ -84,13 +94,13 @@ public class CustomerController {
 	/**
 	 * 獲取表單的客戶代號，並獲取客戶，將其設置在request中，藉以進入頁面顯示詳細資料
 	 */
-	@RequestMapping("/toDetailCustomer")
-	public String toDetailCustomer(String lichenid,HttpServletRequest request) {
+	@RequestMapping("/toAlterCustomer")
+	public String toAlterCustomer(String lichenid,HttpServletRequest request) {
 		Customer customer = customerServiceImpl.selectByLichenID(lichenid);
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("customer", customer);
-		return "/detailCustomer";
+		return "/alterCustomer";
 	}
 	
 	/**
@@ -110,10 +120,8 @@ public class CustomerController {
 			//加入發票資訊
 			customer.setInvoiceInfo(((Customer) session.getAttribute("customer")).getInvoiceInfo());
 			//重製session供畫面顯示
-			List<Customer> cusList = customerServiceImpl.selAll();
 			session.setMaxInactiveInterval(3600);
 			session.setAttribute("customer", customer);
-			session.setAttribute("cusList", cusList);
 
 			return "修改成功";
 		}
@@ -121,18 +129,26 @@ public class CustomerController {
 		return "尚有資料填寫不正確";
 	}
 	
-	
+	/**
+	 * 設置Session供前端thymeleaf使用
+	 */
 	@RequestMapping("/getSession")
 	@ResponseBody
 	public String getSession(Integer id,HttpSession session) {
 		Customer customer = customerServiceImpl.selectByPrimayKey(id);
-		List<Customer> cusList = customerServiceImpl.selAll();
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("customer", customer);
-		session.setAttribute("cusList", cusList);
 		return "成功";
 	}
 	
-	
+	@RequestMapping("/deleteCustomer")
+	@ResponseBody
+	public String deleteCustomer(Integer id) {
+		int i=customerServiceImpl.deleteCustomer(id);
+		if(i==1) {
+			return "刪除成功";
+		}
+		return "刪除失敗";
+	}
 
 }
