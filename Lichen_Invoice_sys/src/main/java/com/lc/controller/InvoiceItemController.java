@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lc.pojo.InvoiceItem;
 import com.lc.service.invoiceItemService;
-import com.lc.service.impl.InvoiceServiceImpl;
-import com.lc.service.impl.invoiceItemServiceImpl;
 
 @Controller
 public class InvoiceItemController {

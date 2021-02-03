@@ -2,6 +2,33 @@
  * 
  */
 
+
+function _key() { 
+if(event.keyCode ==13) 
+	getInvoice();
+} 
+
+function _key2() { 
+if(event.keyCode ==13) 
+	getIncomeInvoice();
+} 
+
+function _key3() { 
+if(event.keyCode ==13) 
+	searchReport();
+}
+
+function _key4() { 
+if(event.keyCode ==13) 
+	searchCus()
+}  
+
+
+function _key5() { 
+if(event.keyCode ==13) 
+	searchSup()
+} 
+
 function toInvoice() {
 	$.getJSON({
 		url: 'toInvoice',
@@ -16,12 +43,14 @@ function toInvoice() {
 			}
 		}
 	});
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("#invoice").css("display", "block");
 	$("input").val("");
+	$("#seltitle").html("");
+	$("#wrongCus").css("display","inline");	
 }
 function toIncomeInvoice() {
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("#income-invoice").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
@@ -29,28 +58,28 @@ function toIncomeInvoice() {
 
 function toCustomer() {
 	
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("#customer").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
 }
 
 function toSupplier() {
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("#supplier").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
 }
 
 function toReport() {
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("#report").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
 }
 
 function toItem() {
-	$("#left div").css("display", "none");
+	$(".func").css("display", "none");
 	$("input").val("");
 	$.ajax({
 		url: 'toInvoiceItem',
@@ -83,6 +112,9 @@ function getInvoice() {
 		success: function(data) {
 			if (data == "no") {
 				alert("查無此客戶，請確認代號是否正確");
+			}
+			if(data == "notax"){
+				alert("未輸入金額")
 			}
 			if (data == "yes") {
 				$("#iframe").html('<iframe src="/invoice" frameborder="no" width="100%" height="100%">');

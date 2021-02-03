@@ -65,6 +65,10 @@ public class InvoiceController {
 			return "no";
 		}
 		
+		if(taxExclude==null) {
+			return "notax";
+		}
+		
 		InvoiceInfo info = invoiceServiceImpl.getInfo(seltitle);
 		InvoiceItem item = invoiceServiceImpl.getItem(selitem);
 		Invoice invoice = new Invoice();
