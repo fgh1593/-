@@ -3,63 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/js/showReport.js"></script>
 <link href="/css/showReport.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div>
-<h3>銷項發票</h3>
-<table>
-	<tr> 
-		<th></th>
-		<th>發票抬頭</th>
-		<th>統一編號</th>
-		<th>發票品項</th>
-		<th>發票時間</th>
-		<th>未稅金額</th>
-		<th>營業稅額</th>
-		<th>含稅金額</th>
-	</tr>
-	<tr th:each="i : ${session.invoiceReport}">
-		<td><button   th:value="${i.id}" onclick="deleteInvoice(this)">移除</button></td>
-		<td th:text="${i.info.invoiceTitle}">
-		<td th:text="${i.info.txIDNumber}">
-		<td th:text="${i.invoiceItem.name}">
-		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
-		<td th:text="${i.taxexclude}">
-		<td th:text="${i.tax}">
-		<td th:text="${i.taxinclude}">
-	</tr>
-</table>&nbsp;
-<span class="total" th:text="${session.outTotal}"></span>
+	<div class="container-fluid">
+		<div class="row mainrow">
+			<div class="col-12 col-lg-7 tableDiv">
 
-</div>
-<div>
-<h3>進項發票</h3>
-<table>
-	<tr>
-		<th></th>
-		<th>發票抬頭</th>
-		<th>統一編號</th>
-		<th>發票時間</th>
-		<th>未稅金額</th>
-		<th>營業稅額</th>
-		<th>含稅金額</th>
-	</tr>
-	<tr th:each="i : ${session.incomeInvoiceReport}">
-		<td><button  th:value="${i.id}" onclick="deleteIncomeInvoice(this)">移除</button></td>
-		<td th:text="${i.supplier.suptitle}">
-		<td th:text="${i.supplier.suptaxnumber}">
-		<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
-		<td th:text="${i.incometaxexclude}">
-		<td th:text="${i.incometax}">
-		<td th:text="${i.incometaxinclude}">
-	</tr>
-</table>
-<span class="total" th:text="${session.incomeTotal}"></span>
-</div>
-<input th:value="${session.startTime}" id="startTime" style="display: none;"/>
-<input th:value="${session.endTime}" id="endTime" style="display: none;"/>
+				<div class="row justify-content-around mb-2">
+					<span class="btn-lg btn-primary ">銷項發票</span>
+				</div>
+
+			<div class="tablerow">
+				<table class="table table-hover">
+					<tr class="head">
+						<td></td>
+						<td>抬頭</td>
+						<td>統編</td>
+						<td>品項</td>
+						<td>時間</td>
+						<td>未稅<br>金額</td>
+						<td>營業<br>稅額</td>
+						<td>含稅<br>金額</td>
+					</tr>
+					<tr th:each="i : ${session.invoiceReport}">
+						<td><button class="btn-sm btn-danger" th:value="${i.id}"
+								onclick="deleteInvoice(this)">移除</button></td>
+						<td th:text="${i.info.invoiceTitle}"/>
+						<td th:text="${i.info.txIDNumber}"/>
+						<td th:text="${i.invoiceItem.name}"/>
+						<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}"/>
+						<td th:text="${i.taxexclude}"/>
+						<td th:text="${i.tax}"/>
+						<td th:text="${i.taxinclude}"/>
+					</tr>
+				</table>
+			</div>
+			<div class="row justify-content-end">
+				<span class="btn btn-secondary text-white ml-2" th:text="'銷項未稅總額:'+${session.outExTotal}"></span>
+				<span class="btn btn-info text-white ml-2" th:text="'銷項稅金總額:'+${session.outTaxTotal}"></span>
+				<span class="btn btn-warning text-white ml-2" th:text="'銷項含稅總額:'+${session.outTotal}"></span>
+			</div>
+			
+			</div>
+			<div class="col-12 col-lg-5 tableDiv">
+				<div class="row justify-content-around mb-2">
+					<span class="btn-lg btn-primary ">進項發票</span>
+				</div>
+
+				<div class="tablerow">
+				<table class="table table-hover">
+					<tr class="head">
+						<td></td>
+						<td>抬頭</td>
+						<td>統編</td>
+						<td>時間</td>
+						<td>未稅<br>金額</td>
+						<td>營業<br>稅額</td>
+						<td>含稅<br>金額</td>
+					</tr>
+					<tr th:each="i : ${session.incomeInvoiceReport}">
+						<td><button class="btn-sm btn-danger" th:value="${i.id}"
+								onclick="deleteIncomeInvoice(this)">移除</button></td>
+						<td th:text="${i.supplier.suptitle}">
+						<td th:text="${i.supplier.suptaxnumber}">
+						<td th:text="${#dates.format(i.time, 'yyyy-MM-dd')}">
+						<td th:text="${i.incometaxexclude}">
+						<td th:text="${i.incometax}">
+						<td th:text="${i.incometaxinclude}">
+					</tr>
+				</table>
+				</div>
+			<div class="row justify-content-end">
+				<span class="btn btn-secondary text-white ml-2 pb-1" th:text="'進項未稅總額:'+${session.incomeExTotal}"></span>
+				<span class="btn btn-info text-white ml-2 pb-1" th:text="'進項稅金總額:'+${session.incomeTaxTotal}"></span>
+				<span class="btn btn-warning text-white ml-2 pb-1" th:text="'進項含稅總額:'+${session.incomeTotal}"></span>
+			</div>
+			
+		
+			</div>
+			
+		</div>
+	</div>
+	<input th:value="${session.startTime}" id="startTime"
+		style="display: none;" />
+	<input th:value="${session.endTime}" id="endTime"
+		style="display: none;" />
 </body>
 </html>

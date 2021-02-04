@@ -3,41 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript">
-function save(){
-	$.ajax({
-		url : 'saveCustomer',
-		data : {
-			"lichenid" : $("#lichenid").val(),
-			"storename" : $("#storename").val(),
-			"shopmanager" : $("#shopmanager").val(),
-			"shopmanagerphone" : $("#shopmanagerphone").val(),
-			"storephone" : $("#storephone").val(),
-			"storeaddress" : $("#storeaddress").val(),
-			"depositoryaddress" : $("#depositoryaddress").val(),
-		},
-		dataType : 'html',
-		error : function() {
-			alert("尚有資料未填寫完全")
-		},
-		success : function(data) {
-			alert(data);
-			$("#iframe").html('<iframe src="/addCustomer" frameborder="no" width="100%" height="100%">');
-		},
-		type : 'POST'
-	});
-}
+	function save() {
+		$
+				.ajax({
+					url : 'saveCustomer',
+					data : {
+						"lichenid" : $("#lichenid").val(),
+						"storename" : $("#storename").val(),
+						"shopmanager" : $("#shopmanager").val(),
+						"shopmanagerphone" : $("#shopmanagerphone").val(),
+						"storephone" : $("#storephone").val(),
+						"storeaddress" : $("#storeaddress").val(),
+						"depositoryaddress" : $("#depositoryaddress").val(),
+					},
+					dataType : 'html',
+					error : function() {
+						alert("尚有資料未填寫完全")
+					},
+					success : function(data) {
+						alert(data);
+						location.reload(true);
+					},
+					type : 'POST'
+				});
+	}
 </script>
+<style type="text/css">
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+.input-group {
+	margin-bottom: 5%;
+}
+
+</style>
 </head>
 <body>
-客戶代號:<input name="lichenid" id="lichenid" autocomplete="off" ><br>
-客戶名稱:<input name="storename" id="storename" autocomplete="off" ><br>
-經營者姓名:<input name="shopmanager" id="shopmanager" autocomplete="off" ><br>
-經營者電話:<input name="shopmanagerphone" id="shopmanagerphone" autocomplete="off" ><br>
-店面電話:<input name="storephone" id="storephone" autocomplete="off" > <br>
-店面地址:<input name="storeaddress" id="storeaddress" autocomplete="off" ><br>
-送貨地址:<input name="depositoryaddress" id="depositoryaddress" autocomplete="off" ><br>
-<button onclick="save()">確認儲存</button>
+	<div class="container">
+
+
+	
+
+
+
+		<div class="row ">
+		
+			<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon1">客戶代號</span>
+				<input type="text" name="lichenid" id="lichenid" class="form-control" placeholder="如&nbsp;ㄅ001&nbsp;之類的命名" aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" >
+			</div>
+			
+			<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon2">客戶名稱</span>
+				<input type="text" name="storename" id="storename" class="form-control" aria-label="客戶名稱" aria-describedby="basic-addon2"	autocomplete="off" >
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon3">經營者姓名</span>
+				<input type="text" name="shopmanager" id="shopmanager" class="form-control"  aria-label="經營者姓名" aria-describedby="basic-addon3"	autocomplete="off" >
+			</div>
+			<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon4">經營者電話</span>
+				<input type="text" name="shopmanagerphone" id="shopmanagerphone" class="form-control"  aria-label="經營者電話" aria-describedby="basic-addon4"	autocomplete="off" >
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon5">店面電話</span>
+				<input type="text" name="storephone" id="storephone" class="form-control"  aria-label="店面電話" aria-describedby="basic-addon5"	autocomplete="off" >
+			</div>
+		</div>
+		<div class="row" >
+			<div class="input-group  col-12">
+				<span class="input-group-text" id="basic-addon6">店面地址</span>
+				<input type="text" name="storeaddress" id="storeaddress" class="form-control" aria-label="店面地址" aria-describedby="basic-addon6"	autocomplete="off" >
+			</div>
+		</div>
+		<div class="row ">
+			<div class="input-group  col-12">
+				<span class="input-group-text" id="basic-addon7">送貨地址</span>
+				<input type="text" name="depositoryaddress" id="depositoryaddress" class="form-control"  aria-label="送貨地址" aria-describedby="basic-addon7"	autocomplete="off" >
+			</div>
+		</div>
+		<div class="row justify-content-end ">
+			<button type="button" class="col-12 col-md-2 btn-lg btn-success btn-block " onclick="save()">確&nbsp;認&nbsp;儲&nbsp;存</button>
+		</div>
+	</div>
 </body>
 </html>

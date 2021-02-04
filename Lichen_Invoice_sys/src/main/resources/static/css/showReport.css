@@ -6,29 +6,33 @@ body{
 	height: 100%
 }
 
-div {
-	width: 42%;
-	height: 90%;
-	float: left;
-	margin : 4%;
-	text-align: center;
-	position: relative;
+
+.container-fluid{
+	height: 100%
 }
 
-div table{
-	width: 100%;
+
+
+.mainrow{
+	height: 100%
 }
 
-div tr{
+.tableDiv {
+	height: 100%;
+	margin-bottom: 2%
+}
+
+.tablerow{
+	height: 80%
+}
+
+table {
 	text-align: center;
 	font-size: 90%;
 }
 
-
-div span{
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	font-size: 120%;
-	color: red;
+.table tbody .head td{
+	border: 0px;
 }
+
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}

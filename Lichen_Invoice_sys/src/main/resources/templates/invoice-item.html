@@ -4,28 +4,43 @@
 <meta charset="UTF-8">
 <title></title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <style type="text/css">
+
 table {
-	width: 20%;
 	text-align: center;
 }
+
+.table tbody tr th {
+	border: 0px;
+}
+
+
+
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+
 </style>
 <script type="text/javascript" src="/js/invoice-item.js" charset="utf-8"></script>
 </head>
 <body>
-	<table>
+<div class="container">
+	<table class="justify-content-center table">
 		<tr>
 			<th></th>
 			<th>品項名稱</th>
 		</tr>
 		<tr th:each="i : ${session.itemList}">
-			<td><button th:id="${i.id}" onclick="deleteItem(this)">移除</button></td>
+			<td><button class="btn btn-danger" th:id="${i.id}" onclick="deleteItem(this)">移除</button></td>
 			<td th:text="${i.name}"></td>
 		</tr>
 		<tr>
-			<td><button onclick="insertItem()">新增</button></td>
-			<td><input id="newItem" autocomplete="off"></input></td>
+			<td><button class="btn btn-success" onclick="insertItem()">新增</button></td>
+			<td class="row justify-content-center">
+			<input id="newItem" autocomplete="off" class="form-control col-8 " placeholder="請輸入愈新增的品項名稱..."></input>
+			</td>
 		</tr>
 	</table>
+</div>
 </body>
 </html>

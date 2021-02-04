@@ -31,7 +31,6 @@ function saveAlter() {
 						alert("系統錯誤")
 					},
 					success: function(data) {
-						location.reload(true);
 					},
 					type: 'GET'
 				});
@@ -148,4 +147,9 @@ function deleteCustomer(){
 		},
 		type: 'GET'
 	})
+}
+
+function addInfo(){
+	var id=$("#lichenid").val();
+	window.open('/addInvoiceInfo?id='+id,'新增發票訊息','height=300,width=300');
 }

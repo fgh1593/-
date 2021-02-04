@@ -3,56 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <title>詳細資料</title>
+<link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
-<script type="text/javascript" src="/js/alterCustomer.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/alterCustomer.js"
+	charset="utf-8"></script>
 <style type="text/css">
-	table{
-		width :80%;
-		text-align: center;
-	}
+table {
+	width: 80%;
+	text-align: center;
+}
+.r{
+	margin-bottom: 2%;
+}
+.table tbody tr th {
+	border: 0px;
+}
+.table tbody tr #add {
+	border: 0px;
+}
+
+
+
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
 </style>
 </head>
 <body>
-		<input id="id" type="text" th:value="${session.customer.id}" style="display:none"></input>
-		<input id="searchCus" type="text" th:value="${session.searchCus}" style="display:none"></input>
-		客戶代號:<input type="text" id="lichenid" th:value="${session.customer.lichenid}"></input><br>
-		客戶名稱:<input type="text" id="storename" th:value="${session.customer.storename}"></input><br>
-		門市電話:<input type="text" id="storephone" th:value="${session.customer.storephone}"></input><br>
-		店長姓名:<input type="text" id="shopmanager" th:value="${session.customer.shopmanager}"></input><br>
-		店長電話:<input type="text" id="shopmanagerphone" th:value="${session.customer.shopmanagerphone}"></input><br>
-		門市地址:<input type="text" id="storeaddress" th:value="${session.customer.storeaddress}"></input><br>
-		送貨地址:<input type="text" id="depositoryaddress" th:value="${session.customer.depositoryaddress}"></input><br>
-		<br>
-		<br>
-		<button onclick="saveAlter()">儲存變更</button>
-		<br>
-		<br>
-		發票資訊:
-		<table>
-		<tr>
-			<th/>
-			<th>發票抬頭</th>
-			<th>統一編號</th>
-			<th>發票地址</th>
-		</tr>
-		<tr th:each="i : ${session.customer.invoiceInfo}">
-			<td>
-			<button th:id="${i.id}" th:value="${i.cid}" onclick="deleteInvoiceInfo(this)">移除</button>
-			</td>
-			<td th:text="${i.invoiceTitle}"/> 
-			<td th:text="${i.txIDNumber}"/> 
-			<td th:text="${i.invoiceAddress}"/> 
-		</tr>
-		<tr/>
-		<tr>
-			<td ><a href="javascript:void(0)" onclick="window.open('/addInvoiceInfo','新增發票訊息','height=150,width=280')">新增</a></td>	
-		</tr>
+	<input id="id" type="text" th:value="${session.customer.id}" style="display: none"></input>
+	<input id="searchCus" type="text" th:value="${session.searchCus}" style="display: none"></input>
+	<div class="container ">
+	
+	
+		<div class="row r justify-content-between">
+			<h3><span class="btn btn-primary  text-white text-normal">客戶資訊</span></h3>
+			<button type="button" class="col-12 col-md-2 btn btn-danger btn-block r ml-3" onclick="deleteCustomer()">刪&nbsp;除&nbsp;客&nbsp;戶</button>
+		</div>
+		<div class="row">
+
+			<div class="col-12 col-md-4 input-group r">
+				<span class="input-group-text" id="basic-addon1">客戶代號</span> <input
+					type="text" id="lichenid" th:value="${session.customer.lichenid}"
+					class="form-control" aria-describedby="basic-addon1"
+					autocomplete="off">
+			</div>
+			<div class="col-12 col-md-4 input-group r">
+				<span class="input-group-text" id="basic-addon2">客戶名稱</span> <input
+					type="text" id="storename" th:value="${session.customer.storename}"
+					class="form-control" aria-describedby="basic-addon2"
+					autocomplete="off">
+			</div>
+			<div class="col-12 col-md-4 input-group r">
+				<span class="input-group-text" id="basic-addon3">門市電話</span> <input
+					type="text" id="storephone"
+					th:value="${session.customer.storephone}" class="form-control"
+					aria-describedby="basic-addon3" autocomplete="off">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-md-6 input-group r">
+				<span class="input-group-text" id="basic-addon4">店長姓名</span> <input
+					type="text" id="shopmanager"
+					th:value="${session.customer.shopmanager}" class="form-control"
+					aria-describedby="basic-addon4" autocomplete="off">
+			</div>
+		
+			<div class="col-12 col-md-6 input-group r">
+				<span class="input-group-text" id="basic-addon5">店長電話</span> <input
+					type="text" id="shopmanagerphone"
+					th:value="${session.customer.shopmanagerphone}" class="form-control"
+					aria-describedby="basic-addon5" autocomplete="off">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12  input-group r">
+				<span class="input-group-text" id="basic-addon6">門市地址</span> <input
+					type="text" id="storeaddress"
+					th:value="${session.customer.storeaddress}" class="form-control"
+					aria-describedby="basic-addon6" autocomplete="off">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12  input-group r">
+				<span class="input-group-text" id="basic-addon7">送貨地址</span> <input
+					type="text" id="depositoryaddress"
+					th:value="${session.customer.depositoryaddress}" class="form-control"
+					aria-describedby="basic-addon7" autocomplete="off">
+			</div>
+		</div>
+		<div class="row justify-content-end">
+			<button type="button" class="col-12 col-md-2 btn btn-success btn-block r ml-3" onclick="saveAlter()">儲&nbsp;存&nbsp;變&nbsp;更</button>
+		</div>
+		<div class="row r">
+			<h3><span class="btn btn-primary  text-white  ">發票資訊</span></h3>
+		</div>
+		<table class="table table-hover">
+			<tr>
+				<th />
+				<th>發票抬頭</th>
+				<th>統一編號</th>
+				<th>發票地址</th>
+			</tr>
+			<tr th:each="i : ${session.customer.invoiceInfo}">
+				<td>
+					<button class="btn btn-danger" th:id="${i.id}" th:value="${i.cid}"	onclick="deleteInvoiceInfo(this)">移除</button>
+				</td>
+				<td th:text="${i.invoiceTitle}" />
+				<td th:text="${i.txIDNumber}" />
+				<td th:text="${i.invoiceAddress}" />
+			</tr>
+			<tr />
+			<tr>
+				<td id="add"><button class="btn btn-success" onclick="addInfo()">新增</button></td>
+			</tr>
 		</table>
-		<br>
-		<br>
-		<button onclick="deleteCustomer()">刪除客戶</button>
-		<br>
-		<br>
-		<button onclick="location.href='/showCustomer'">返回</button>
+		<div class="row r justify-content-end">
+			<button class="btn btn-warning text-white" onclick="location.href='/showCustomer'">返&nbsp;回</button>
+		</div>
+	</div>
 </body>
 </html>

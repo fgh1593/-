@@ -3,42 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript">
-function save(){
-	$.ajax({
-		url : 'saveInvoiceInfo',
-		data : {
-			"lichenid" : $("#lichenid").val(),
-			"invoiceTitle" : $("#invoiceTitle").val(),
-			"txIDNumber" : $("#txIDNumber").val(),
-			"invoiceAddress" : $("#invoiceAddress").val(),
-		
-		},
-		dataType : 'html',
-		error : function() {
-			alert("尚有資料未填寫完全")
-		},
-		success : function(data) {
-			alert(data);
-			if(data=="儲存成功"){
-				location.reload(true);
-				window.opener.reload();
-				window.close();
-			}
-		},
-		type : 'POST'
-	});
-}
+	function save() {
+		$.ajax({
+			url : 'saveInvoiceInfo',
+			data : {
+				"lichenid" : $("#lichenid").val(),
+				"invoiceTitle" : $("#invoiceTitle").val(),
+				"txIDNumber" : $("#txIDNumber").val(),
+				"invoiceAddress" : $("#invoiceAddress").val(),
+
+			},
+			dataType : 'html',
+			error : function() {
+				alert("尚有資料未填寫完全")
+			},
+			success : function(data) {
+				alert(data);
+				if (data == "儲存成功") {
+					location.reload(true);
+					window.opener.reload();
+					window.close();
+				}
+			},
+			type : 'POST'
+		});
+	}
 </script>
+<style type="text/css">
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+	.input-group {
+		margin-bottom: 5%;
+	}
+</style>
 </head>
 <body>
-<body>
-客戶代號:<input name="lichenid" id="lichenid" autocomplete="off" ><br>
-發票抬頭:<input name="invoiceTitle" id="invoiceTitle" autocomplete="off" ><br>
-統一編號:<input name="txIDNumber" id="txIDNumber" autocomplete="off" ><br>
-發票地址:<input name="invoiceAddress" id="invoiceAddress" autocomplete="off" ><br>
-<button onclick="save()">確認儲存</button>
-</body>
+	<div class="container">
+	<div class="row">
+	
+	
+		<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon1">客戶代號</span>
+				<input type="text" name="lichenid" id="lichenid" th:value="${param.id}" class="form-control"  aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" >
+		</div>
+		<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon2">發票抬頭</span>
+				<input type="text" name="invoiceTitle" id="invoiceTitle"  class="form-control"  aria-label="發票抬頭" aria-describedby="basic-addon2"	autocomplete="off" >
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon3">統一編號</span>
+				<input type="text" name="txIDNumber" id="txIDNumber"  class="form-control"  aria-label="統一編號" aria-describedby="basic-addon3"	autocomplete="off" >
+		</div>
+		
+		<div class="col-12 col-md-6 input-group ">
+				<span class="input-group-text" id="basic-addon4">發票地址</span>
+				<input type="text" name="invoiceAddress" id="invoiceAddress"  class="form-control"  aria-label="發票地址" aria-describedby="basic-addon4"	autocomplete="off" >
+		</div>
+	</div>
+	
+	<div class="row justify-content-end ">
+			<button type="button" class="col-12 col-md-2 btn-lg btn-success btn-block " onclick="save()">確&nbsp;認&nbsp;儲&nbsp;存</button>
+	</div>
+	
+	</div>
 </body>
 </html>

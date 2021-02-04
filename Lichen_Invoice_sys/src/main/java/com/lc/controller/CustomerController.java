@@ -95,8 +95,8 @@ public class CustomerController {
 	 * 獲取表單的客戶代號，並獲取客戶，將其設置在request中，藉以進入頁面顯示詳細資料
 	 */
 	@RequestMapping("/toAlterCustomer")
-	public String toAlterCustomer(String lichenid,HttpServletRequest request) {
-		Customer customer = customerServiceImpl.selectByLichenID(lichenid);
+	public String toAlterCustomer(Integer id,HttpServletRequest request) {
+		Customer customer = customerServiceImpl.selectByPrimayKey(id);
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("customer", customer);

@@ -3,39 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript">
-function save(){
-	$.ajax({
-		url : 'saveSupplier',
-		data : {
-			"supid" : $("#supid").val(),
-			"supname" : $("#supname").val(),
-			"supphone" : $("#supphone").val(),
-			"suptitle" : $("#suptitle").val(),
-			"suptaxnumber" : $("#suptaxnumber").val(),
-			"supaddress" : $("#supaddress").val(),
-		},
-		dataType : 'html',
-		error : function() {
-			alert("尚有資料未填寫完全")
-		},
-		success : function(data) {
-			alert(data);
-			$("#iframe").html('<iframe src="/addSupplier" frameborder="no" width="100%" height="100%">');
-		},
-		type : 'POST'
-	});
-}
+	function save() {
+		$
+				.ajax({
+					url : 'saveSupplier',
+					data : {
+						"supid" : $("#supid").val(),
+						"supname" : $("#supname").val(),
+						"supphone" : $("#supphone").val(),
+						"suptitle" : $("#suptitle").val(),
+						"suptaxnumber" : $("#suptaxnumber").val(),
+						"supaddress" : $("#supaddress").val(),
+					},
+					dataType : 'html',
+					error : function() {
+						alert("尚有資料未填寫完全")
+					},
+					success : function(data) {
+						alert(data);
+						location.reload(true);
+					},
+					type : 'POST'
+				});
+	}
 </script>
+<style type="text/css">
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+.input-group {
+	margin-bottom: 5%;
+}
+
+</style>
 </head>
 <body>
-廠商代號:<input name="supid" id="supid"><br>
-廠商名稱:<input name="supname" id="supname"><br>
-廠商電話:<input name="supphone" id="supphone"><br>
-發票抬頭:<input name="suptitle" id="suptitle"><br>
-統一編號:<input name="suptaxnumber" id="suptaxnumber"><br>
-廠商地址:<input name="supaddress" id="supaddress"><br>
-<button onclick="save()">確認儲存</button>
+	<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-4 input-group ">
+			<span class="input-group-text" id="basic-addon1">廠商代號</span> <input
+				type="text" name="supid" id="supid" class="form-control"
+				placeholder="如&nbsp;ㄅ001&nbsp;之類的命名" aria-label="廠商代號"
+				aria-describedby="basic-addon1" autocomplete="off">
+		</div>
+		<div class="col-12 col-md-4 input-group ">		
+			<span class="input-group-text" id="basic-addon2">廠商名稱</span> <input
+				type="text" name="supname" id="supname" class="form-control"
+				aria-describedby="basic-addon2" autocomplete="off">
+		</div>
+		
+		<div class="col-12 col-md-4 input-group ">		
+			<span class="input-group-text" id="basic-addon3">廠商電話</span> <input
+				type="text" name="supphone" id="supphone" class="form-control"
+				aria-describedby="basic-addon3" autocomplete="off">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12  input-group ">		
+			<span class="input-group-text" id="basic-addon4">廠商地址</span> <input
+				type="text" name="supaddress" id="supaddress" class="form-control"
+				aria-describedby="basic-addon4" autocomplete="off">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6  input-group ">		
+			<span class="input-group-text" id="basic-addon5">發票抬頭</span> <input
+				type="text" name="suptitle" id="suptitle" class="form-control"
+				aria-describedby="basic-addon5" autocomplete="off">
+		</div>
+		<div class="col-12 col-md-6  input-group ">		
+			<span class="input-group-text" id="basic-addon6">統一編號</span> <input
+				type="text" name="suptaxnumber" id="suptaxnumber" class="form-control"
+				aria-describedby="basic-addon6" autocomplete="off">
+		</div>
+	</div>
+	<div class="row justify-content-end ">
+		<button type="button" class="col-12 col-md-2 btn-lg btn-success btn-block " onclick="save()">確&nbsp;認&nbsp;儲&nbsp;存</button>
+	</div>
+</div>
 </body>
+
 </html>

@@ -3,26 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript" src="/js/alterSupplier.js" charset="utf-8"></script>
+<style type="text/css">
+
+.r{
+	margin-bottom: 5%;
+}
+
+body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+</style>
 </head>
 <body>
 		<input id="searchSup" type="text" th:value="${session.searchSup}" style="display:none"></input>
 		<input id="id" type="text" th:value="${session.supplier.id}" style="display:none"></input>
-		廠商代號:<input type="text" id="supid" th:value="${session.supplier.supid}"></input><br>
-		廠商名稱:<input type="text" id="supname" th:value="${session.supplier.supname}"></input><br>
-		廠商電話:<input type="text" id="supphone" th:value="${session.supplier.supphone}"></input><br>
-		廠商地址:<input type="text" id="supaddress" th:value="${session.supplier.supaddress}"></input><br>
-		發票抬頭:<input type="text" id="suptitle" th:value="${session.supplier.suptitle}"></input><br>
-		統一編號:<input type="text" id="suptaxnumber" th:value="${session.supplier.suptaxnumber}"></input><br>
-		<br>
-		<br>
-		<button onclick="saveAlter()">儲存變更</button>
-		<br>
-		<br>
-		<button onclick="deleteSupplier()">刪除廠商</button>
-		<br>
-		<br>
-		<button onclick="location.href='/showSupplier'">返回</button>
+<div class="container">
+		
+		<div class="row r justify-content-between">
+			<h3><span class="btn btn-primary  text-white text-normal">廠商資訊</span></h3>
+			<button type="button" class="col-12 col-md-2 btn btn-danger btn-block r ml-3" onclick="deleteSupplier()">刪&nbsp;除&nbsp;廠&nbsp;商</button>
+		</div>
+		
+		<div class="row">
+		<div class="col-12 col-md-4 input-group r">
+			<span class="input-group-text" id="basic-addon1">廠商代號</span> <input
+				type="text" name="supid" id="supid" class="form-control"
+				 aria-label="廠商代號" aria-describedby="basic-addon1" autocomplete="off" th:value="${session.supplier.supid}">
+		</div>
+		<div class="col-12 col-md-4 input-group r">		
+			<span class="input-group-text" id="basic-addon2">廠商名稱</span>
+			 <input
+				type="text" name="supname" id="supname" class="form-control"
+				aria-describedby="basic-addon2" autocomplete="off" th:value="${session.supplier.supname}"/>
+		</div>
+		
+		<div class="col-12 col-md-4 input-group r">		
+			<span class="input-group-text" id="basic-addon3">廠商電話</span> <input
+				type="text" name="supphone" id="supphone" class="form-control"
+				aria-describedby="basic-addon3" autocomplete="off" th:value="${session.supplier.supphone}"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12  input-group r">		
+			<span class="input-group-text" id="basic-addon4">廠商地址</span> <input
+				type="text" name="supaddress" id="supaddress" class="form-control"
+				aria-describedby="basic-addon4" autocomplete="off" th:value="${session.supplier.supaddress}"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6  input-group r">		
+			<span class="input-group-text" id="basic-addon5">發票抬頭</span> <input
+				type="text" name="suptitle" id="suptitle" class="form-control"
+				aria-describedby="basic-addon5" autocomplete="off" th:value="${session.supplier.suptitle}"/>
+		</div>
+		<div class="col-12 col-md-6  input-group r">		
+			<span class="input-group-text" id="basic-addon6">統一編號</span> <input
+				type="text" name="suptaxnumber" id="suptaxnumber" class="form-control"
+				aria-describedby="basic-addon6" autocomplete="off" th:value="${session.supplier.suptaxnumber}"/>
+		</div>
+
+	</div>
+	<div class="row justify-content-end">
+			<button type="button" class="col-12 col-md-2 btn btn-success btn-block r ml-3" onclick="saveAlter()">儲&nbsp;存&nbsp;變&nbsp;更</button>
+	</div>
+	
+	<div class="row r justify-content-end">
+			<button class="btn btn-warning text-white" onclick="location.href='/showSupplier'">返&nbsp;回</button>
+	</div>
+		
+</div>
 </body>
 </html>
