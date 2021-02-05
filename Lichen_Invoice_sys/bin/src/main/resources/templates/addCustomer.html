@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript">
+function save(){
+	$.ajax({
+		url : 'saveCustomer',
+		data : {
+			"lichenid" : $("#lichenid").val(),
+			"storename" : $("#storename").val(),
+			"receipttitle" : $("#receipttitle").val(),
+			"txidnumber" : $("#txidnumber").val(),
+			"shopmanager" : $("#shopmanager").val(),
+			"shopmanagerphone" : $("#shopmanagerphone").val(),
+			"storephone" : $("#storephone").val(),
+			"storeaddress" : $("#storeaddress").val(),
+			"receiptaddress" : $("#receiptaddress").val(),
+			"depositoryaddress" : $("#depositoryaddress").val(),
+		},
+		dataType : 'html',
+		error : function() {
+			alert("尚有資料未填寫完全")
+		},
+		success : function(data) {
+			alert(data);
+			$("#iframe").html('<iframe src="/addCustomer" frameborder="no" width="100%" height="100%">');
+		},
+		type : 'POST'
+	});
+}
+</script>
+</head>
+<body>
+客戶代號:<input name="lichenid" id="lichenid"><br>
+客戶名稱:<input name="storename" id="storename"><br>
+發票抬頭:<input name="receipttitle" id="receipttitle"><br>
+統&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;編:<input name="txidnumber" id="txidnumber"><br>
+經營者姓名:<input name="shopmanager" id="shopmanager"><br>
+經營者電話:<input name="shopmanagerphone" id="shopmanagerphone"><br>
+店面電話:<input name="storephone" id="storephone"><br>
+店面地址:<input name="storeaddress" id="storeaddress"><br>
+發票地址:<input name="receiptaddress" id="receiptaddress"><br>
+送貨地址:<input name="depositoryaddress" id="depositoryaddress"><br>
+<button onclick="save()">確認儲存</button>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.mapper.IncomeInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.lc.pojo.IncomeInvoice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="supplierid" jdbcType="INTEGER" property="supplierid" />
+    <result column="time" jdbcType="DATE" property="time" />
+    <result column="incomeTaxExclude" jdbcType="INTEGER" property="incometaxexclude" />
+    <result column="incomeTax" jdbcType="INTEGER" property="incometax" />
+    <result column="incomeTaxInclude" jdbcType="INTEGER" property="incometaxinclude" />
+    <association property="supplier" select="com.lc.mapper.SupplierMapper.selectByPrimaryKey" column="supplierid"></association>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from incomeinvoice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lc.pojo.IncomeInvoice">
+    insert into incomeinvoice (id, supplierid, time, 
+      incomeTaxExclude, incomeTax, incomeTaxInclude
+      )
+    values (#{id,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{time,jdbcType=DATE}, 
+      #{incometaxexclude,jdbcType=INTEGER}, #{incometax,jdbcType=INTEGER}, #{incometaxinclude,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lc.pojo.IncomeInvoice">
+    update incomeinvoice
+    set supplierid = #{supplierid,jdbcType=INTEGER},
+      time = #{time,jdbcType=DATE},
+      incomeTaxExclude = #{incometaxexclude,jdbcType=INTEGER},
+      incomeTax = #{incometax,jdbcType=INTEGER},
+      incomeTaxInclude = #{incometaxinclude,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
+    from incomeinvoice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
+    from incomeinvoice
+  </select>
+  
+   <select id="selectByDate" resultMap="BaseResultMap">
+    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
+    from incomeinvoice where time between #{startTime} and #{endTime}
+  </select>
+</mapper>

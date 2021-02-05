@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+th{
+	font-size: 10pt;
+}
+td{
+	font-size: 10pt;
+}
+</style>
+</head>
+<body>
+<table >
+	<tr>
+		<th>客戶代碼</th>
+		<th>客戶名稱</th>
+		<th>發票抬頭</th>
+		<th>統一編號</th>
+		<th>門市電話</th>
+		<th>店長姓名</th>
+		<th>店長電話</th>
+		<th>門市地址</th>
+		<th>發票地址</th>
+		<th>送貨地址</th>
+	</tr>
+	<tr th:each="c : ${session.cusList}">
+		<td th:text="${c.lichenid}"/> 
+		<td th:text="${c.storename}"/> 
+		<td th:text="${c.receipttitle}"/> 
+		<td th:text="${c.txidnumber}"/> 
+		<td th:text="${c.storephone}"/> 
+		<td th:text="${c.shopmanager}"/> 
+		<td th:text="${c.shopmanagerphone}"/> 
+		<td th:text="${c.storeaddress}"/> 
+		<td th:text="${c.receiptaddress}"/> 
+		<td th:text="${c.depositoryaddress}"/> 
+	</tr>
+</table>
+</body>
+</html>

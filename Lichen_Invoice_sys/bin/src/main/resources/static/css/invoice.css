@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@page {
+	margin-top: 1.7cm;
+	margin-bottom: 0.3cm;
+	margin-left: 0.3cm;
+	margin-right: 0.1cm;
+	size: 7.62cm 13.97cm; /*列印紙張大小*/
+}
+
+.print {
+	page-break-after: always; /*print分頁面*/
+}
+
+@media print {
+	.no-print{
+		display : none;
+	}
+	#tot{
+		position:absolute;
+		right:10px;
+	}
+}
+
+
+
