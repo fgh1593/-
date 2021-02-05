@@ -48,27 +48,20 @@ function toInvoice() {
 	$("input").val("");
 	$("#seltitle").html("");
 	$("#wrongCus").css("display","inline");	
+	$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#a .pick").css("display", "block");
+	$("#a .nopick").css("display", "none");
 }
 function toIncomeInvoice() {
 	$(".func").css("display", "none");
 	$("#income-invoice").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
-}
-
-function toCustomer() {
-	
-	$(".func").css("display", "none");
-	$("#customer").css("display", "block");
-	$("#iframe").html('');
-	$("input").val("");
-}
-
-function toSupplier() {
-	$(".func").css("display", "none");
-	$("#supplier").css("display", "block");
-	$("#iframe").html('');
-	$("input").val("");
+	$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#b .pick").css("display", "block");
+	$("#b .nopick").css("display", "none");
 }
 
 function toReport() {
@@ -76,11 +69,42 @@ function toReport() {
 	$("#report").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
+		$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#c .pick").css("display", "block");
+	$("#c .nopick").css("display", "none");
 }
+function toCustomer() {
+	
+	$(".func").css("display", "none");
+	$("#customer").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
+		$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#d .pick").css("display", "block");
+	$("#d .nopick").css("display", "none");
+}
+
+function toSupplier() {
+	$(".func").css("display", "none");
+	$("#supplier").css("display", "block");
+	$("#iframe").html('');
+	$("input").val("");
+		$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#e .pick").css("display", "block");
+	$("#e .nopick").css("display", "none");
+}
+
 
 function toItem() {
 	$(".func").css("display", "none");
 	$("input").val("");
+		$(".nopick").css("display", "block");
+	$(".pick").css("display", "none");
+	$("#f .pick").css("display", "block");
+	$("#f .nopick").css("display", "none");
 	$.ajax({
 		url: 'toInvoiceItem',
 		data: {

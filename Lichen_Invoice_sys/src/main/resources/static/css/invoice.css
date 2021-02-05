@@ -15,11 +15,15 @@
 	.no-print{
 		display : none;
 	}
+	.print{
+		display :inline;
+	}
 	#tot{
 		position:absolute;
 		right:10px;
 	}
 }
+
 
 
 

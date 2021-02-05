@@ -11,163 +11,172 @@
 
 </head>
 <body>
-	<div id="h">
-		<img id="head" src="/img/logo.png">
-	</div>
 	<div class="container-fluid" id="main">
+		<div class="row"id="h">
+			<img id="head" src="/img/logo.png">
+		</div>
 		<div class="row " id="main-in">
 			<div id="left" class="col-12 col-md-3 container mb-5">
-				<div class="row justify-content-around mb-3">
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toInvoice()"><img
-							src="/img/invoice.png"></a> <br> <font>發票列印</font>
+				<div class="row justify-content-around i">
+					<div class="icon col-4 " id="a">
+						<a href="JavaScript:" onclick="toInvoice()"><img class="img-fluid nopick" src="/img/invoice-icon.png"></a>
+						<a href="JavaScript:" onclick="toInvoice()"><img  class="img-fluid pick" src="/img/invoice-icon-pick.png"></a>
 					</div>
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toIncomeInvoice()"><img
-							src="/img/income-invoice.png"></a> <br> <font>進項發票</font>
+					<div class="icon col-4" id="b">
+						<a href="JavaScript:" onclick="toIncomeInvoice()"><img class="img-fluid nopick" src="/img/income-invoice-icon.png"></a>
+						<a href="JavaScript:" onclick="toIncomeInvoice()"><img  class="img-fluid pick" src="/img/income-invoice-icon-pick.png"></a>
 					</div>
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toReport()"><img
-							src="/img/record.png"></a> <br> <font>紀錄查詢</font>
+					<div class="icon col-4" id="c">
+						<a href="JavaScript:" onclick="toReport()"><img class="img-fluid nopick"	src="/img/report-icon.png">	</a>
+						<a href="JavaScript:" onclick="toReport()"><img   class="img-fluid pick"	src="/img/report-icon-pick.png"></a>
 					</div>
 				</div>
-				<div class="row justify-content-around mb-5">
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toCustomer()"><img
-							src="/img/cus.png"></a> <br> <font>客戶管理</font>
+				<div class="row justify-content-around i" >
+					<div class="icon col-4" id="d">
+						<a href="JavaScript:" onclick="toCustomer()"><img class="img-fluid nopick"	src="/img/cus-icon.png"></a> 
+						<a href="JavaScript:" onclick="toCustomer()"><img   class="img-fluid pick"	src="/img/cus-icon-pick.png"></a> 
 					</div>
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toSupplier()"><img
-							src="/img/supplier.png"></a> <br> <font>廠商管理</font>
+					<div class="icon col-4" id="e">
+						<a href="JavaScript:" onclick="toSupplier()"><img class="img-fluid nopick"	src="/img/sup-icon.png"></a>
+						<a href="JavaScript:" onclick="toSupplier()"><img  class="img-fluid pick"	src="/img/sup-icon-pick.png"></a>
 					</div>
-					<div class="icon col-3">
-						<a href="JavaScript:" onclick="toItem()"><img
-							src="/img/item.png"></a> <br> <font>品項管理</font>
+					<div class="icon col-4" id="f">
+						<a href="JavaScript:" onclick="toItem()"><img class="img-fluid nopick"	src="/img/item-icon.png"></a>
+						<a href="JavaScript:" onclick="toItem()"><img class="img-fluid pick"	src="/img/item-icon-pick.png"></a>
 					</div>
 				</div>
 				
 				
 				<div id="invoice" class="func">
-					<div class="input-group mb-3 ">
-						<span class="input-group-text" id="basic-addon1">客戶編號</span> 
-						<input  type="text" name="lichenid" id="lichenid" class="form-control" placeholder="客戶代號"
+					<div class="row justify-content-center r" >
+						<h3><span class="badge bg-secondary  text-white">銷項發票列印與儲存</span></h3>
+					</div>
+					<div class="input-group mb-1">
+						<span class="input-group-text" id="basic-addon1">客戶代號</span> 
+						<input  type="text" name="lichenid" id="lichenid" class="form-control" 
 							aria-label="客戶編號" aria-describedby="basic-addon1" autocomplete="off" onkeyup="getTitle()" onkeydown="_key()">
 					</div>
 					
 					
-					<h5 class="mb-3" id="wrh"><span id="wrongCus" class="badge badge-pill badge-danger">查無此客戶</span></h5>
+					<h5 class="r" id="wrh"><span id="wrongCus" class="badge badge-pill badge-danger">查無此客戶</span></h5>
 					
-					<div class="input-group mb-5">
+					<div class="input-group r">
   						<label class="input-group-text" for="seltitle" >統編抬頭</label>
 						<select id="seltitle" class="custom-select"  >
 						</select> 
 					</div>
 					
 				
-					<div class="input-group mb-5">
+					<div class="input-group r">
   						<label class="input-group-text" for="selitem" >發票品項</label>
 						<select id="selitem" class="custom-select"  >
 						</select> 
 					</div>
 					
 				
-					<div class="input-group mb-5">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon2">未稅金額</span> 
-						<input  type="text" name="taxExclude" id="taxExclude" class="form-control" placeholder="未稅金額"
+						<input  type="text" name="taxExclude" id="taxExclude" class="form-control" 
 							aria-label="未稅金額" aria-describedby="basic-addon2 button-addon1" autocomplete="off" onkeydown="_key()">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon1" onclick="getInvoice()">輸入</button>
 					</div>
-				
-				
+					
+					<div class="input-group justify-content-end r">
+						<button class="btn btn-secondary" type="button" id="button-addon1" onclick="getInvoice()">輸入</button>
+					</div>
 				</div>
 
 				<div id="income-invoice" class="func">
+					<div class="row justify-content-center r" >
+						<h3><span class="badge bg-secondary  text-white">進項發票匯入</span></h3>
+					</div>
 				
-					<div class="input-group mb-5 ">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-b1">廠商統編</span> 
-						<input  type="text" name="suptaxnumber" id="suptaxnumber" class="form-control" placeholder="廠商統編"
+						<input  type="text" name="suptaxnumber" id="suptaxnumber" class="form-control" 
 							aria-label="廠商統編" aria-describedby="basic-addon-b1" autocomplete="off" >
 					</div>
 					
 					
-					<div class="input-group mb-5 ">
+					<div class="input-group  r">
 						<span class="input-group-text" id="basic-addon-b2">發票開立時間</span> 
-						<input  type="date" name="time" id="time" class="form-control" placeholder="發票開立時間"
+						<input  type="date" name="time" id="time" class="form-control" 
 							aria-label="發票開立時間" aria-describedby="basic-addon-b2" autocomplete="off" />
 					</div>
 					
-					<div class="input-group mb-5">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-b3">未稅金額</span> 
-						<input  type="text" name="incomeTaxExclude" id="incomeTaxExclude" class="form-control" placeholder="未稅金額"
-							aria-label="未稅金額" aria-describedby="basic-addon-b3 button-addon-b3" autocomplete="off" onkeydown="_key2()">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon-b3" onclick="getIncomeInvoice()">輸入</button>
+						<input  type="text" name="incomeTaxExclude" id="incomeTaxExclude" class="form-control" 
+							aria-label="未稅金額" autocomplete="off" onkeydown="_key2()">
+					</div>
+					<div class="input-group justify-content-end r">
+						<button class="btn btn-secondary" type="button" id="button-addon-b3" onclick="getIncomeInvoice()">輸入</button>
 					</div>
 				</div>
 				
 				
 				<div id="report" class="func container">
-					<div class="row justify-content-center mb-5" >
-						<h1><span class="badge bg-primary  text-white">紀錄查詢</span></h1>
+					<div class="row justify-content-center r" >
+						<h3><span class="badge bg-secondary  text-white">紀錄查詢</span></h3>
 					</div>
 					
-					<div class="input-group mb-5">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-c1">開始統計時間</span> 
-						<input  type="date" name="startTime" id="startTime" class="form-control" placeholder="開始統計時間"
+						<input  type="date" name="startTime" id="startTime" class="form-control" 
 							aria-label="開始統計時間" aria-describedby="basic-addon-c1" autocomplete="off" />
 					</div>
 					
-					<div class="input-group mb-5">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-c2">結束統計時間</span> 
-						<input  type="date" name="endTime" id="endTime" class="form-control" placeholder="結束統計時間"
+						<input  type="date" name="endTime" id="endTime" class="form-control" 
 							aria-label="結束統計時間" aria-describedby="basic-addon-c2" autocomplete="off" onkeydown="_key3()" />
 					</div>
 					
-					<div class="row justify-content-center mb-5">
-						<button type="button" class="btn-lg btn-success" onclick="searchReport()">搜尋</button>
+					<div class="input-group justify-content-end r">
+						<button type="button" class="btn btn-secondary" onclick="searchReport()">搜尋</button>
 					</div>
 				</div>
 				
 				
 				
 				<div id="customer" class="func">
-					<div class="row justify-content-center mb-5 ">
-						<button type="button" class="col-8 btn-lg btn-success btn-block" onclick="addCustomer()">新&nbsp;&nbsp;建&nbsp;&nbsp;客&nbsp;&nbsp;戶</button>
+					<div class="row justify-content-center r ">
+						<button type="button" class="col-8 btn-lg btn-secondary btn-block" onclick="addCustomer()">新&nbsp;&nbsp;建&nbsp;&nbsp;客&nbsp;&nbsp;戶</button>
 					</div>
-					<div class="row justify-content-center mb-5 ">
-						<button type="button" class="col-8 btn-lg btn-success btn-block" onclick="addInvoiceInfo()">新&nbsp;建&nbsp;發&nbsp;票&nbsp;訊&nbsp;息</button>
+					<div class="row justify-content-center r">
+						<button type="button" class="col-8 btn-lg btn-secondary btn-block" onclick="addInvoiceInfo()">新&nbsp;建&nbsp;發&nbsp;票&nbsp;訊&nbsp;息</button>
 					</div>
-					<div class="row justify-content-center mb-5 ">
-						<button type="button" class="col-8 btn-lg btn-success btn-block" onclick="selectAllCus()">客&nbsp;&nbsp;戶&nbsp;&nbsp;列&nbsp;&nbsp;表</button>
+					<div class="row justify-content-center r">
+						<button type="button" class="col-8 btn-lg btn-secondary btn-block" onclick="selectAllCus()">客&nbsp;&nbsp;戶&nbsp;&nbsp;列&nbsp;&nbsp;表</button>
 					</div>
 					
-					<div class="input-group mb-5">
+					<div class="input-group r ">
 						<span class="input-group-text" id="basic-addon-d1">客戶搜尋</span> 
-						<input  type="text" name="searchCus" id="searchCus" class="form-control " placeholder="請輸入客戶代號、統編或客戶名稱"
-							aria-label="請輸入客戶代號、統編或客戶名稱" aria-describedby="basic-addon-d1 button-addon-d1" autocomplete="off" onkeydown="_key4()">
-						<button class="btn btn-success" type="button" id="button-addon-d1" onclick="searchCus()">搜尋</button>
+						<input  type="text" name="searchCus" id="searchCus" class="form-control " placeholder="代號、統編或名稱"
+							aria-label="代號、統編或名稱" aria-describedby="basic-addon-d1 button-addon-d1" autocomplete="off" onkeydown="_key4()">
+						<button class="btn btn-secondary" type="button" id="button-addon-d1" onclick="searchCus()">搜尋</button>
 					</div>
 					
 				</div>
 				<div id="supplier" class="func">
 				
 				
-				<div class="row justify-content-center mb-5 ">
-					<button type="button" class="col-8 btn-lg btn-success btn-block" onclick="addSupplier()">新&nbsp;&nbsp;建&nbsp;&nbsp;廠&nbsp;&nbsp;商</button>
+				<div class="row justify-content-center  r">
+					<button type="button" class="col-8 btn-lg btn-secondary btn-block" onclick="addSupplier()">新&nbsp;&nbsp;建&nbsp;&nbsp;廠&nbsp;&nbsp;商</button>
 				</div>
-				<div class="row justify-content-center mb-5 ">	
-					<button type="button" class="col-8 btn-lg btn-success btn-block" onclick="selectAllSup()">廠&nbsp;&nbsp;商&nbsp;&nbsp;列&nbsp;&nbsp;表</button>
+				<div class="row justify-content-center r ">	
+					<button type="button" class="col-8 btn-lg btn-secondary btn-block" onclick="selectAllSup()">廠&nbsp;&nbsp;商&nbsp;&nbsp;列&nbsp;&nbsp;表</button>
 				</div>	
 					
-					<div class="input-group mb-5">
+					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-e1">廠商搜尋</span> 
-						<input  type="text" name="searchSup" id="searchSup" class="form-control " placeholder="請輸入廠商代號、統編或廠商名稱"
+						<input  type="text" name="searchSup" id="searchSup" class="form-control " placeholder="代號、統編或名稱"
 							aria-label="請輸入廠商代號、統編或廠商名稱" aria-describedby="basic-addon-e1 button-addon-e1" autocomplete="off" onkeydown="_key5()">
-						<button class="btn btn-success" type="button" id="button-addon-e1" onclick="searchSup()">搜尋</button>
+						<button class="btn btn-secondary" type="button" id="button-addon-e1" onclick="searchSup()">搜尋</button>
 					</div>
 				</div>
 			
 			</div>
-			<div id="iframe" class="col-12 col-md-9"></div>
+			<div id="iframe" class="col-12 col-md-9" bgcolor="#343a40"></div>
 		</div>
 	</div>
 </body>

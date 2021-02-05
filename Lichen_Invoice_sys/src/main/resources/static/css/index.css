@@ -8,26 +8,33 @@ html{
 }
 body{
 	height: 100%;
+	background-color: #343a40;
 }
 
 #h{
-	height:10%;
+	height:5%;
+	background-color: #808A87;
 }
-
+#head{
+	height: 100%;
+	width: auto;
+}
 #main {
-	height :87%;
+	height :100%;
 }
 
 #main-in{
-	height :100%;
+	height :95%;
 }
 
 #left {
 	height: 100%;
+	background-image: url('/img/bg3.jpg');
 }
 
 #iframe {
-	height: 100%;
+	height: 99%;
+	background-color: #343a40;
 }
 
 #main {
@@ -39,21 +46,17 @@ body{
 }
 
 .icon{
-	height:5%;
 	text-align: center;
 }
 
-.icon img{
-	width: 100%;
-	height: auto;
-}
+
 
 #wrongCus{
 	diplay :none;
 }
 
 #wrh{
-	padding-left: 20%;
+	padding-left: 17%;
 }
 
 
@@ -61,3 +64,18 @@ body{
 	padding-top: 15%
 }
 
+.r {
+	margin-bottom: 9%;
+}
+
+.i{
+	margin-bottom: 3%;
+	padding-top: 5%
+}
+.input-group-text{
+	font-size: 90%;
+}
+
+.pick{
+	display: none;
+}
