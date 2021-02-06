@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Invoice</title>
+<title></title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="/css/invoice.css" >
 <script type="text/javascript">
@@ -24,44 +24,59 @@ function save(){
 </script>
 </head>
 <body>
+	<div class="no-print" id="main">
+			<div id="back">
+				<img id="papper" src="/img/invoice-papper.png"/>
+				<span id="time" class="font11"th:text="${#dates.format(session.invoice.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
+				<span id="title"class="font12" th:text="${session.invoice.info.invoiceTitle}"></span>
+				<span id="txNumber" class="font12" th:text="'統一編號:'+${session.invoice.info.txIDNumber}"></span>
+				<span id="item" class="font12" th:text="${session.invoice.invoiceItem.name}"></span>
+				<span id="total" class="font12" th:text="${session.invoice.taxexclude}"></span>
+				<span id="taxEx" class="font12" th:text="${session.invoice.taxexclude}"></span>
+				<span id="tax" class="font12" th:text="${session.invoice.tax}"></span>
+				<span id="taxIn" class="font12" th:text="${session.invoice.taxinclude}"></span>
+			</div>
+				<div class="no-print" id="bt">
+					<button id="btn1" class="btn btn-success" onclick="print();save()" >列印發票並儲存</button>
+				</div>
+		</div>
+	
 	<div class="print">
-		<font size="3pt">利成塑膠廠</font><br> <font size="3pt">台南市安南區怡安路二段500號</font><br>
-		<font size="3pt">統一編號:19709855 TEL:06-2475328</font><br>
-		<font size="3pt"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font>
-			<font size="3pt"th:text="${#dates.format(session.invoice.time, 'yyyy-MM-dd HH:mm:ss')}"></font>
-		<font size="3pt">WP103S</font><br>
-		<font size="3.5pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font>
-		<font size="3.5pt" th:text="${session.invoice.info.invoiceTitle}"></font><br>
-		<font size="3.5pt"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font>
-		<font size="3.5pt">統一編號:</font><font size="3.5pt" th:text="${session.invoice.info.txIDNumber}"></font><br>
+		<span class="font11">利成塑膠廠</span><br>
+		<span class="font11">台南市安南區怡安路二段500號</span><br>
+		<span class="font11">統一編號:19709855 TEL:06-2475328</span><br>
+		<span class="font11"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+		<span class="font11"th:text="${#dates.format(session.invoice.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
+		<span class="font11">WP103S</span><br>
+		<span class="font12">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+		<span class="font12" th:text="${session.invoice.info.invoiceTitle}"></span><br>
+		<span class="font12"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+		<span class="font12">統一編號:</span><span class="font12" th:text="${session.invoice.info.txIDNumber}"></span><br>
 		<br>
-		<font size="3.5pt">品名____________數量________金額</font><br>
-		<font size="3.5pt" th:text="${session.invoice.invoiceItem.name}"></font>
-		<font size="3.5pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  </font>
-		<font size="3.5pt">1</font>
-		<font size="3.5pt">&nbsp; &nbsp; &nbsp; &nbsp;</font>
-		<font size="3.5pt" id="tot" th:text="${session.invoice.taxexclude}" ></font>
-		<br>
-		<br>
-		<br>
+		<span class="font12">品名____________數量________金額</span><br>
+		<span class="font12" th:text="${session.invoice.invoiceItem.name}"></span>
+		<span class="font12">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  </span>
+		<span class="font12">1</span>
+		<span class="font12">&nbsp; &nbsp; &nbsp; &nbsp;</span>
+		<span class="font12" id="tot" th:text="${session.invoice.taxexclude}" ></span>
 		<br>
 		<br>
 		<br>
 		<br>
 		<br>
 		<br>
-		<font size="3.5pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font >
-		<font size="3.5pt" th:text="${session.invoice.taxexclude}"></font><br>
-		<font size="3.5pt">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font>
-		<font size="3.5pt" th:text="${session.invoice.tax}"></font><br>
-		<font size="3.5pt">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font>
-		<font size="3.5pt" th:text="${session.invoice.taxinclude}"></font><br>
+		<br>
+		<br>
+		<br>
+		<span class="font12">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span >
+		<span class="font12" th:text="${session.invoice.taxexclude}"></span><br>
+		<span class="font12">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+		<span class="font12" th:text="${session.invoice.tax}"></span><br>
+		<span class="font12">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+		<span class="font12" th:text="${session.invoice.taxinclude}"></span><br>
 		 
 	</div>
-	<div class="no-print">
-	<button onclick="print();save()" >列印發票並儲存</button>
-	<button onclick="print();">僅列印</button>
-	</div>
+	
 	
 </body>
 </html>
