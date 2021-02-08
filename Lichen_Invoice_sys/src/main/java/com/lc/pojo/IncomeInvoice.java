@@ -6,6 +6,10 @@ public class IncomeInvoice {
     private Integer id;
 
     private Integer supplierid;
+    
+    private String incomeInvoiceHead;
+    
+    private String incomeInvoiceNum;
 
     private Date time;
 
@@ -19,7 +23,23 @@ public class IncomeInvoice {
     
     
 
-    public Supplier getSupplier() {
+    public String getIncomeInvoiceHead() {
+		return incomeInvoiceHead;
+	}
+
+	public void setIncomeInvoiceHead(String incomeInvoiceHead) {
+		this.incomeInvoiceHead = incomeInvoiceHead;
+	}
+
+	public String getIncomeInvoiceNum() {
+		return incomeInvoiceNum;
+	}
+
+	public void setIncomeInvoiceNum(String incomeInvoiceNum) {
+		this.incomeInvoiceNum = incomeInvoiceNum;
+	}
+
+	public Supplier getSupplier() {
 		return supplier;
 	}
 

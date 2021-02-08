@@ -182,7 +182,9 @@ function getIncomeInvoice() {
 		data: {
 			"suptaxnumber": $("#suptaxnumber").val(),
 			"incomeTaxExclude": $("#incomeTaxExclude").val(),
-			"time": $("#time").val()
+			"time": $("#time").val(),
+			"incomeInvoiceHead" :$("#incomeInvoiceHead").val(),
+			"incomeInvoiceNum" :$("#incomeInvoiceNum").val()
 		},
 		dataType: 'html',
 		error: function() {

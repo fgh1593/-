@@ -6,6 +6,8 @@
 <title>利成發票系統</title>
 <link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/index.css">
+<link rel="icon" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
+<link rel="bookmark" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8" src="/js/index.js"></script>
 
@@ -54,7 +56,7 @@
 					<div class="input-group mb-1">
 						<span class="input-group-text" id="basic-addon1">客戶代號</span> 
 						<input  type="text" name="lichenid" id="lichenid" class="form-control" 
-							aria-label="客戶編號" aria-describedby="basic-addon1" autocomplete="off" onkeyup="getTitle()" onkeydown="_key()">
+							aria-label="客戶編號" aria-describedby="basic-addon1" autocomplete="off" onkeyup="getTitle()" onkeydown="_key()" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 					</div>
 					
 					
@@ -77,7 +79,7 @@
 					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon2">未稅金額</span> 
 						<input  type="text" name="taxExclude" id="taxExclude" class="form-control" 
-							aria-label="未稅金額" aria-describedby="basic-addon2 button-addon1" autocomplete="off" onkeydown="_key()">
+							aria-label="未稅金額" aria-describedby="basic-addon2 button-addon1" autocomplete="off" onkeydown="_key()" oninput ="value=value.replace(/[^\d]/g,'')">
 					</div>
 					
 					<div class="input-group justify-content-end r">
@@ -93,9 +95,15 @@
 					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-b1">廠商統編</span> 
 						<input  type="text" name="suptaxnumber" id="suptaxnumber" class="form-control" 
-							aria-label="廠商統編" aria-describedby="basic-addon-b1" autocomplete="off" >
+							aria-label="廠商統編" aria-describedby="basic-addon-b1" autocomplete="off"  oninput ="value=value.replace(/[^\d]/g,'')" maxlength="8">
 					</div>
 					
+					<div class="input-group r">
+						<span class="input-group-text" id="basic-addon-b4">發票號碼</span> 
+						 <input type="text" class="form-control col-2" id="incomeInvoiceHead" oninput ="value=value.replace(/[^a-zA-Z]/g,'');this.value = this.value.toUpperCase();" maxlength="2">
+ 						 <span class="input-group-text">-</span>
+  						 <input type="text" class="form-control" id="incomeInvoiceNum" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="8" >
+					</div>
 					
 					<div class="input-group  r">
 						<span class="input-group-text" id="basic-addon-b2">發票開立時間</span> 
@@ -106,8 +114,10 @@
 					<div class="input-group r">
 						<span class="input-group-text" id="basic-addon-b3">未稅金額</span> 
 						<input  type="text" name="incomeTaxExclude" id="incomeTaxExclude" class="form-control" 
-							aria-label="未稅金額" autocomplete="off" onkeydown="_key2()">
+							aria-label="未稅金額" autocomplete="off" onkeydown="_key2()" oninput ="value=value.replace(/[^\d]/g,'')">
 					</div>
+					
+					
 					<div class="input-group justify-content-end r">
 						<button class="btn btn-secondary" type="button" id="button-addon-b3" onclick="getIncomeInvoice()">輸入</button>
 					</div>

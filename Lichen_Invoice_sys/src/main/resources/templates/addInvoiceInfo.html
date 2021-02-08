@@ -8,6 +8,11 @@
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript">
 	function save() {
+		if($("#txIDNumber").val().length!=8){
+			alert("統一編號字數不足")
+			return false;
+		}
+		
 		$.ajax({
 			url : 'saveInvoiceInfo',
 			data : {
@@ -53,22 +58,22 @@ body{
 	
 		<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon1">客戶代號</span>
-				<input type="text" name="lichenid" id="lichenid"  th:value="${param.id}" class="form-control"  aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" >
+				<input type="text" name="lichenid" id="lichenid"  th:value="${param.id}" class="form-control"  aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 		</div>
 		<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon2">發票抬頭</span>
-				<input type="text" name="invoiceTitle" id="invoiceTitle"  class="form-control"  aria-label="發票抬頭" aria-describedby="basic-addon2"	autocomplete="off" >
+				<input type="text" name="invoiceTitle" id="invoiceTitle"  class="form-control"  aria-label="發票抬頭" aria-describedby="basic-addon2"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon3">統一編號</span>
-				<input type="text" name="txIDNumber" id="txIDNumber"  class="form-control"  aria-label="統一編號" aria-describedby="basic-addon3"	autocomplete="off" >
+				<input type="text" name="txIDNumber" id="txIDNumber"  class="form-control"  aria-label="統一編號" aria-describedby="basic-addon3"	autocomplete="off" oninput ="value=value.replace(/[^\d]/g,'')" maxlength="8">
 		</div>
 		
 		<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon4">發票地址</span>
-				<input type="text" name="invoiceAddress" id="invoiceAddress"  class="form-control"  aria-label="發票地址" aria-describedby="basic-addon4"	autocomplete="off" >
+				<input type="text" name="invoiceAddress" id="invoiceAddress"  class="form-control"  aria-label="發票地址" aria-describedby="basic-addon4"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 		</div>
 	</div>
 	

@@ -48,19 +48,19 @@ body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helve
 				<span class="input-group-text" id="basic-addon1">客戶代號</span> <input
 					type="text" id="lichenid" th:value="${session.customer.lichenid}"
 					class="form-control" aria-describedby="basic-addon1"
-					autocomplete="off">
+					autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 			<div class="col-12 col-md-4 input-group r">
 				<span class="input-group-text" id="basic-addon2">客戶名稱</span> <input
 					type="text" id="storename" th:value="${session.customer.storename}"
 					class="form-control" aria-describedby="basic-addon2"
-					autocomplete="off">
+					autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 			<div class="col-12 col-md-4 input-group r">
 				<span class="input-group-text" id="basic-addon3">門市電話</span> <input
 					type="text" id="storephone"
 					th:value="${session.customer.storephone}" class="form-control"
-					aria-describedby="basic-addon3" autocomplete="off">
+					aria-describedby="basic-addon3" autocomplete="off" oninput ="value=value.replace(/[^\d]/g,'')">
 			</div>
 		</div>
 		<div class="row">
@@ -68,14 +68,14 @@ body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helve
 				<span class="input-group-text" id="basic-addon4">店長姓名</span> <input
 					type="text" id="shopmanager"
 					th:value="${session.customer.shopmanager}" class="form-control"
-					aria-describedby="basic-addon4" autocomplete="off">
+					aria-describedby="basic-addon4" autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		
 			<div class="col-12 col-md-6 input-group r">
 				<span class="input-group-text" id="basic-addon5">店長電話</span> <input
 					type="text" id="shopmanagerphone"
 					th:value="${session.customer.shopmanagerphone}" class="form-control"
-					aria-describedby="basic-addon5" autocomplete="off">
+					aria-describedby="basic-addon5" autocomplete="off" oninput ="value=value.replace(/[^\d]/g,'')">
 			</div>
 		</div>
 		<div class="row">
@@ -83,7 +83,7 @@ body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helve
 				<span class="input-group-text" id="basic-addon6">門市地址</span> <input
 					type="text" id="storeaddress"
 					th:value="${session.customer.storeaddress}" class="form-control"
-					aria-describedby="basic-addon6" autocomplete="off">
+					aria-describedby="basic-addon6" autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		</div>
 		<div class="row">
@@ -91,7 +91,7 @@ body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helve
 				<span class="input-group-text" id="basic-addon7">送貨地址</span> <input
 					type="text" id="depositoryaddress"
 					th:value="${session.customer.depositoryaddress}" class="form-control"
-					aria-describedby="basic-addon7" autocomplete="off">
+					aria-describedby="basic-addon7" autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		</div>
 		<div class="row justify-content-end">

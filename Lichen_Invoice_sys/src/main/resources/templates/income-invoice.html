@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title></title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="/css/income-invoice.css" >
 <script type="text/javascript">
 function save(){
 	$.ajax({
@@ -23,20 +24,23 @@ function save(){
 </script>
 </head>
 <body>
-<span th:text ="'廠商名稱:'+${session.incomeInvoice.supplier.supname}"></span>
-<br>
-<span th:text="'廠商抬頭:'+${session.incomeInvoice.supplier.suptitle}" ></span>
-<br>
-<span th:text="'廠商統編:'+${session.incomeInvoice.supplier.suptaxnumber}"></span>
-<br>
-<span th:text="'發票日期:'+${#dates.format(session.incomeInvoice.time, 'yyyy-MM-dd')}"></span>
-<br>
-<span th:text="'未稅金額:'+${session.incomeInvoice.incometaxexclude}"></span>
-<br>
-<span th:text="'稅金:'+${session.incomeInvoice.incometax}"></span>
-<br>
-<span th:text="'含稅金額:'+${session.incomeInvoice.incometaxinclude}"></span>
-<br>
-<button onclick="save()" >確認儲存</button>
+	<div class="no-print" id="main">
+		<div id="back">
+				<img id="papper" src="/img/incomeinvoice-papper.png"/>
+				<span id="number" th:text="${session.incomeInvoice.incomeInvoiceHead}+'-'+${session.incomeInvoice.incomeInvoiceNum}"></span>
+				<span id="time" class="font11"th:text="${#dates.format(session.incomeInvoice.time, 'yyyy-MM-dd')}"></span>
+				<span id="title"class="font11" th:text="${session.incomeInvoice.supplier.suptitle}"></span>
+				<span id="txNumber" class="font11" th:text="'統一編號:'+${session.incomeInvoice.supplier.suptaxnumber}"></span>
+				<span id="address" class="font11" th:text="${session.incomeInvoice.supplier.supaddress}"></span>
+				<span id="total" class="font12" th:text="${session.incomeInvoice.incometaxexclude}"></span>
+				<span id="taxEx" class="font12" th:text="${session.incomeInvoice.incometaxexclude}"></span>
+				<span id="tax" class="font12" th:text="${session.incomeInvoice.incometax}"></span>
+				<span id="taxIn" class="font12" th:text="${session.incomeInvoice.incometaxinclude}"></span>
+			</div>
+				<div id="bt">
+					<button id="btn1" class="btn btn-success" onclick="save()" >確認儲存</button>
+				</div>
+		</div>
+
 </body>
 </html>

@@ -103,7 +103,7 @@ public class InvoiceController {
 	 */
 	@RequestMapping("/getIncomeInvoice")
 	@ResponseBody
-	public String getIncomeInvoice(String suptaxnumber, Integer incomeTaxExclude,String time, HttpServletRequest request) throws ParseException {
+	public String getIncomeInvoice(String suptaxnumber, Integer incomeTaxExclude,String time,String incomeInvoiceHead ,String incomeInvoiceNum,HttpServletRequest request) throws ParseException {
 		Supplier supplier= supplierServiceImpl.selectBytaxNumber(suptaxnumber);
 		if (supplier == null) {
 			return "no";
@@ -114,6 +114,8 @@ public class InvoiceController {
 		if(incomeTaxExclude==null) {
 			return "notax";
 		}
+		
+		
 		IncomeInvoice incomeInvoice=new IncomeInvoice();
 		incomeInvoice.setSupplierid(supplier.getId());
 		incomeInvoice.setSupplier(supplier);
@@ -122,6 +124,8 @@ public class InvoiceController {
 		Integer taxInclude=tax+incomeTaxExclude;
 		incomeInvoice.setIncometax(tax);
 		incomeInvoice.setIncometaxinclude(taxInclude);
+		incomeInvoice.setIncomeInvoiceHead(incomeInvoiceHead);
+		incomeInvoice.setIncomeInvoiceNum(incomeInvoiceNum);
 		
 		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 		Date date = df.parse(time);

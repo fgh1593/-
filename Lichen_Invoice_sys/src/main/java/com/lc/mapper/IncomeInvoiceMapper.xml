@@ -8,6 +8,8 @@
     <result column="incomeTaxExclude" jdbcType="INTEGER" property="incometaxexclude" />
     <result column="incomeTax" jdbcType="INTEGER" property="incometax" />
     <result column="incomeTaxInclude" jdbcType="INTEGER" property="incometaxinclude" />
+    <result column="incomeInvoiceHead"  jdbcType="VARCHAR" property="incomeInvoiceHead" />
+    <result column="incomeInvoiceNum"  jdbcType="VARCHAR" property="incomeInvoiceNum" />
     <association property="supplier" select="com.lc.mapper.SupplierMapper.selectByPrimaryKey" column="supplierid"></association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -15,11 +17,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.lc.pojo.IncomeInvoice">
-    insert into incomeinvoice (id, supplierid, time, 
-      incomeTaxExclude, incomeTax, incomeTaxInclude
+    insert into incomeinvoice (id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude,incomeInvoiceHead,incomeInvoiceNum
       )
     values (#{id,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{time,jdbcType=DATE}, 
-      #{incometaxexclude,jdbcType=INTEGER}, #{incometax,jdbcType=INTEGER}, #{incometaxinclude,jdbcType=INTEGER}
+      #{incometaxexclude,jdbcType=INTEGER}, #{incometax,jdbcType=INTEGER}, #{incometaxinclude,jdbcType=INTEGER},#{incomeInvoiceHead, jdbcType=VARCHAR},#{incomeInvoiceNum, jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.lc.pojo.IncomeInvoice">
@@ -29,20 +30,19 @@
       incomeTaxExclude = #{incometaxexclude,jdbcType=INTEGER},
       incomeTax = #{incometax,jdbcType=INTEGER},
       incomeTaxInclude = #{incometaxinclude,jdbcType=INTEGER}
+      incomeInvoiceHead = #{incomeInvoiceHead, jdbcType=VARCHAR}
+      incomeInvoiceNum = #{incomeInvoiceNum, jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
-    from incomeinvoice
+    select *  from incomeinvoice
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
-    from incomeinvoice
+    select *  from incomeinvoice
   </select>
   
    <select id="selectByDate" resultMap="BaseResultMap">
-    select id, supplierid, time, incomeTaxExclude, incomeTax, incomeTaxInclude
-    from incomeinvoice where time between #{startTime} and #{endTime}
+    select * from incomeinvoice where time between #{startTime} and #{endTime}
   </select>
 </mapper>

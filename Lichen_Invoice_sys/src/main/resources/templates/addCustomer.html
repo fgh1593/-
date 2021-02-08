@@ -8,8 +8,8 @@
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
 <script type="text/javascript">
 	function save() {
-		$
-				.ajax({
+		
+			$.ajax({
 					url : 'saveCustomer',
 					data : {
 						"lichenid" : $("#lichenid").val(),
@@ -57,40 +57,40 @@ body{
 		
 			<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon1">客戶代號</span>
-				<input type="text" name="lichenid" id="lichenid" class="form-control" placeholder="如&nbsp;ㄅ001&nbsp;之類的命名" aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" >
+				<input type="text" name="lichenid" id="lichenid" class="form-control" placeholder="如&nbsp;ㄅ001&nbsp;之類的命名" aria-label="客戶代號" aria-describedby="basic-addon1"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 			
 			<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon2">客戶名稱</span>
-				<input type="text" name="storename" id="storename" class="form-control" aria-label="客戶名稱" aria-describedby="basic-addon2"	autocomplete="off" >
+				<input type="text" name="storename" id="storename" class="form-control" aria-label="客戶名稱" aria-describedby="basic-addon2"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		</div>
 		<div class="row ">
 			<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon3">經營者姓名</span>
-				<input type="text" name="shopmanager" id="shopmanager" class="form-control"  aria-label="經營者姓名" aria-describedby="basic-addon3"	autocomplete="off" >
+				<input type="text" name="shopmanager" id="shopmanager" class="form-control"  aria-label="經營者姓名" aria-describedby="basic-addon3"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 			<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon4">經營者電話</span>
-				<input type="text" name="shopmanagerphone" id="shopmanagerphone" class="form-control"  aria-label="經營者電話" aria-describedby="basic-addon4"	autocomplete="off" >
+				<input type="text" name="shopmanagerphone" id="shopmanagerphone" class="form-control"  aria-label="經營者電話" aria-describedby="basic-addon4"	autocomplete="off" oninput ="value=value.replace(/[^\d]/g,'')">
 			</div>
 		</div>
 		<div class="row ">
 			<div class="col-12 col-md-6 input-group ">
 				<span class="input-group-text" id="basic-addon5">店面電話</span>
-				<input type="text" name="storephone" id="storephone" class="form-control"  aria-label="店面電話" aria-describedby="basic-addon5"	autocomplete="off" >
+				<input type="text" name="storephone" id="storephone" class="form-control"  aria-label="店面電話" aria-describedby="basic-addon5"	autocomplete="off" oninput ="value=value.replace(/[^\d]/g,'')" >
 			</div>
 		</div>
 		<div class="row" >
 			<div class="input-group  col-12">
 				<span class="input-group-text" id="basic-addon6">店面地址</span>
-				<input type="text" name="storeaddress" id="storeaddress" class="form-control" aria-label="店面地址" aria-describedby="basic-addon6"	autocomplete="off" >
+				<input type="text" name="storeaddress" id="storeaddress" class="form-control" aria-label="店面地址" aria-describedby="basic-addon6"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		</div>
 		<div class="row ">
 			<div class="input-group  col-12">
 				<span class="input-group-text" id="basic-addon7">送貨地址</span>
-				<input type="text" name="depositoryaddress" id="depositoryaddress" class="form-control"  aria-label="送貨地址" aria-describedby="basic-addon7"	autocomplete="off" >
+				<input type="text" name="depositoryaddress" id="depositoryaddress" class="form-control"  aria-label="送貨地址" aria-describedby="basic-addon7"	autocomplete="off" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 			</div>
 		</div>
 		<div class="row justify-content-end ">

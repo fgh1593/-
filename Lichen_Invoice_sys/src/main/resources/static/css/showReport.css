@@ -7,14 +7,21 @@ body{
 	background-color: #343a40;
 }
 
-
-
 .container-fluid{
-	padding-top:3%;
 	height: 100%
 }
 
-
+#myTabContent{
+	height: 88%;
+}
+#out{
+	height: 100%;
+	margin-top: 1%;
+}
+#income{
+	height: 100%;
+	margin-top: 1%;
+}
 .mainrow{
 	height: 100%
 }
@@ -25,18 +32,21 @@ body{
 }
 
 .tablerow{
-	height: 80%;
+	height: 86%;
 	overflow-y:auto;
 	margin-bottom: 2%
 }
 
 table {
 	text-align: center;
-	font-size: 90%;
+	font-size: 100%;
 }
 
 .table tbody .head td{
 	border: 0px;
 }
+
+
+
 
 body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
