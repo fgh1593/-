@@ -31,7 +31,7 @@ if(event.keyCode ==13)
 
 function toInvoice() {
 	$.getJSON({
-		url: 'toInvoice',
+		url: 'getInvoiceItem',
 		
 		data: {
 		},
@@ -43,6 +43,25 @@ function toInvoice() {
 			}
 		}
 	});
+	$.ajax({
+		url: 'getInvoiceNumber',
+		data: {
+		},
+		dataType: 'html',
+		error: function() {
+			alert("系統錯誤")
+		},
+		success: function(data) {
+			if(data=="no"){
+				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r' onclick='addInvoiceNum()'>建立發票字軌組</button>");
+			}else{
+			$("#invoiceNumberBox").html("<input class='form-control r' type='text' placeholder='"+data+"' disabled>");
+			$("#invoiceNumberBox").append("<button type='button' class='col-8 btn btn-secondary btn-block r' onclick='removeInvoiceNum()'>移除發票字軌組</button>");
+			}
+		},
+		type: 'GET'
+	});
+	
 	$(".func").css("display", "none");
 	$("#invoice").css("display", "block");
 	$("input").val("");
@@ -53,6 +72,10 @@ function toInvoice() {
 	$("#a .pick").css("display", "block");
 	$("#a .nopick").css("display", "none");
 }
+
+
+
+
 function toIncomeInvoice() {
 	$(".func").css("display", "none");
 	$("#income-invoice").css("display", "block");

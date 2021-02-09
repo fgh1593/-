@@ -25,6 +25,7 @@ import com.lc.pojo.Supplier;
 import com.lc.service.CustomerService;
 import com.lc.service.SupplierService;
 import com.lc.service.impl.InvoiceServiceImpl;
+import com.lc.utils.InvoiceNumberChecker;
 
 @Controller
 public class InvoiceController {
@@ -35,8 +36,8 @@ public class InvoiceController {
 	private CustomerService customerServiceImpl;
 	@Autowired
 	private SupplierService supplierServiceImpl;
-
-	
+	@Autowired
+	private InvoiceNumberChecker invoiceNumberCheker;
 	/**
 	 * 將頁面導入template資源路徑
 	 * Customer 用來校驗前端頁面資料是否有空錯誤
@@ -226,11 +227,26 @@ public class InvoiceController {
 	/**
 	 * 進入'發票列印'功能介面時，將'發票品項'內容讀取並傳至前台
 	 */
-	@RequestMapping("/toInvoice")
+	@RequestMapping("/getInvoiceItem")
 	@ResponseBody
-	public List<InvoiceItem> toInvoice(HttpServletRequest request) {
+	public List<InvoiceItem> getInvoiceItem(HttpServletRequest request) {
 		List<InvoiceItem> invoiceItems = invoiceServiceImpl.getInvoiceItems();
 		return invoiceItems;
+	}
+	
+	
+	@RequestMapping("/getInvoiceNumber")
+	@ResponseBody
+	public String getInvoiceNumber(){
+		List<String> numbers = invoiceNumberCheker.getInvoiceNum();
+		if(numbers==null || numbers.size()==0) {
+			invoiceNumberCheker.setInvoiceHead(null);
+			return "no";
+		}
+		String num = numbers.get(0);
+		String head=invoiceNumberCheker.getInvoiceHead();
+		String str=head+"-"+num;
+		return str;
 	}
 	
 	@RequestMapping("/saveInvoiceInfo")
