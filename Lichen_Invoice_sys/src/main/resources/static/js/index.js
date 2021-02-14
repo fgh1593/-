@@ -53,10 +53,10 @@ function toInvoice() {
 		},
 		success: function(data) {
 			if(data=="no"){
-				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r' onclick='addInvoiceNum()'>建立發票字軌組</button>");
+				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='addInvoiceNum()'>建立發票字軌組</button>");
 			}else{
-			$("#invoiceNumberBox").html("<input class='form-control r' type='text' placeholder='"+data+"' disabled>");
-			$("#invoiceNumberBox").append("<button type='button' class='col-8 btn btn-secondary btn-block r' onclick='removeInvoiceNum()'>移除發票字軌組</button>");
+			$("#invoiceNumberBox").html("<input class='form-control r1' type='text' placeholder='"+data+"' disabled>");
+			$("#invoiceNumberBox").append("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='removeInvoiceNum()'>移除發票字軌組</button>");
 			}
 		},
 		type: 'GET'
@@ -74,8 +74,25 @@ function toInvoice() {
 }
 
 
+function addInvoiceNum(){
+	window.open('/addInvoiceNum','新增發票字軌號碼','height=300,width=300');
+}
 
-
+function removeInvoiceNum(){
+	$.ajax({
+		url: 'removeInvoiceNum',
+		data: {
+		},
+		dataType: 'html',
+		error: function() {
+			alert("系統錯誤")
+		},
+		success: function(data) {
+			toInvoice();
+		},
+		type: 'GET'
+	});
+}
 function toIncomeInvoice() {
 	$(".func").css("display", "none");
 	$("#income-invoice").css("display", "block");

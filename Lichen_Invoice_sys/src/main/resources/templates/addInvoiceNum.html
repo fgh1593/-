@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新增發票字軌號碼</title>
+<link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<link rel="icon" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
+<link rel="bookmark" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
+<style type="text/css">
+	body{
+		background-color: #343a40;
+	}
+	body,button, input,select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", "微软雅黑", "メイリオ", "맑은 고딕", sans-serif;}
+</style>
+<script type="text/javascript">
+function setInvoiceNumber() {
+	if($("#invoiceStartNum").val().length!=8){
+		alert("起始號碼不足8碼")
+		return false;
+	}
+	if($("#invoiceEndNum").val().length!=8){
+		alert("結束號碼不足8碼")
+		return false;
+	}
+	if($("#invoiceHead").val().length!=2){
+		alert("發票字軌不足2碼")
+		return false;
+	}
+	
+	$.ajax({
+		url : 'setInvoiceNum',
+		data : {
+			"invoiceHead" : $("#invoiceHead").val(),
+			"invoiceStartNum" : $("#invoiceStartNum").val(),
+			"invoiceEndNum" : $("#invoiceEndNum").val(),
+		},
+		dataType : 'html',
+		error : function() {
+			alert("系統錯誤")
+		},
+		success : function(data) {
+			if (data == "儲存成功") {
+				window.opener.toInvoice();
+				window.close();
+			}
+		},
+		type : 'POST'
+	});
+}
+</script>
+</head>
+<body>
+	<div class="container">
+			<div class="input-group col-12 mb-3 mt-5">
+						<span class="input-group-text" id="basic-addon-b4">發票字軌</span> 
+						 <input type="text" class="form-control col-4" id="invoiceHead" oninput ="value=value.replace(/[^a-zA-Z]/g,'');this.value = this.value.toUpperCase();" maxlength="2">
+			</div>
+			<div class="input-group col-12 mb-3">
+ 						 <span class="input-group-text">起始號碼</span>
+  						 <input type="text" class="form-control" id="invoiceStartNum" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="8" >
+			</div>
+			<div class="input-group col-12 mb-3">
+ 						 <span class="input-group-text">結束號碼</span>
+  						 <input type="text" class="form-control" id="invoiceEndNum" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="8" >
+			</div>
+			<div class="row input-group justify-content-center">
+						<button class="btn btn-secondary col-8" type="button" id="button-addon-b3" onclick="setInvoiceNumber()">設置</button>
+			</div>
+	</div>
+</body>
+</html>

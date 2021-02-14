@@ -50,45 +50,45 @@
 				
 				
 				<div id="invoice" class="func">
-					<div class="row justify-content-center r" >
-						<h3><span class="badge bg-secondary  text-white">銷項發票列印與儲存</span></h3>
+					<div class="row justify-content-center r1" >
+						<h5><span class="badge bg-secondary  text-white">銷項發票列印與儲存</span></h5>
 					</div>
-					<div class="input-group mb-1">
+					<div class="input-group r1">
 						<span class="input-group-text" id="basic-addon1">客戶代號</span> 
 						<input  type="text" name="lichenid" id="lichenid" class="form-control" 
 							aria-label="客戶編號" aria-describedby="basic-addon1" autocomplete="off" onkeyup="getTitle()" onkeydown="_key()" oninput="this.value=this.value.replace(/^\s+|\s+$/g,'')">
 					</div>
 					
 					
-					<h5 class="r" id="wrh"><span id="wrongCus" class="badge badge-pill badge-danger">查無此客戶</span></h5>
+					<h6 class="r1" id="wrh"><span id="wrongCus" class="badge badge-pill badge-danger">查無此客戶</span></h6>
 					
-					<div class="input-group r">
+					<div class="input-group  r1">
   						<label class="input-group-text" for="seltitle" >統編抬頭</label>
 						<select id="seltitle" class="custom-select"  >
 						</select> 
 					</div>
 					
 				
-					<div class="input-group r">
+					<div class="input-group  r1">
   						<label class="input-group-text" for="selitem" >發票品項</label>
 						<select id="selitem" class="custom-select"  >
 						</select> 
 					</div>
 					
 				
-					<div class="input-group r">
+					<div class="input-group r1">
 						<span class="input-group-text" id="basic-addon2">未稅金額</span> 
 						<input  type="text" name="taxExclude" id="taxExclude" class="form-control" 
 							aria-label="未稅金額" aria-describedby="basic-addon2 button-addon1" autocomplete="off" onkeydown="_key()" oninput ="value=value.replace(/[^\d]/g,'')">
 					</div>
 					
-					<div class="input-group justify-content-end r">
+					<div id="invoiceNumberBox" class="row justify-content-center r1">
+						
+					</div>
+					<div class="input-group  justify-content-end r1">
 						<button class="btn btn-secondary" type="button" id="button-addon1" onclick="getInvoice()">輸入</button>
 					</div>
 					
-					<div id="invoiceNumberBox" class="row justify-content-center">
-						
-					</div>
 				</div>
 
 				<div id="income-invoice" class="func">

@@ -235,19 +235,7 @@ public class InvoiceController {
 	}
 	
 	
-	@RequestMapping("/getInvoiceNumber")
-	@ResponseBody
-	public String getInvoiceNumber(){
-		List<String> numbers = invoiceNumberCheker.getInvoiceNum();
-		if(numbers==null || numbers.size()==0) {
-			invoiceNumberCheker.setInvoiceHead(null);
-			return "no";
-		}
-		String num = numbers.get(0);
-		String head=invoiceNumberCheker.getInvoiceHead();
-		String str=head+"-"+num;
-		return str;
-	}
+
 	
 	@RequestMapping("/saveInvoiceInfo")
 	@ResponseBody
@@ -292,5 +280,36 @@ public class InvoiceController {
 			return "刪除成功";
 		}
 		return "系統錯誤";
+	}
+	
+	
+	@RequestMapping("/getInvoiceNumber")
+	@ResponseBody
+	public String getInvoiceNumber(){
+		List<String> numbers = invoiceNumberCheker.getInvoiceNum();
+		if(numbers==null || numbers.size()==0) {
+			invoiceNumberCheker.setInvoiceHead(null);
+			return "no";
+		}
+		String num = numbers.get(0);
+		String head=invoiceNumberCheker.getInvoiceHead();
+		String str=head+"-"+num;
+		return str;
+	}
+	
+	@RequestMapping("/setInvoiceNum")
+	@ResponseBody
+	public String setInvoiceNum(String invoiceHead,String invoiceStartNum,String invoiceEndNum) {
+		
+		invoiceNumberCheker.setInvoiceNumber(invoiceHead, invoiceStartNum, invoiceEndNum);
+		return "儲存成功";
+	}
+	
+	@RequestMapping("/removeInvoiceNum")
+	@ResponseBody
+	public String removeInvoiceNum() {
+		invoiceNumberCheker.removeInvoiceNumber();
+		return "移除成功";
+		
 	}
 }

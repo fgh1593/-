@@ -35,17 +35,19 @@ public class InvoiceNumberChecker {
 			String str=String.format("%08d", i);
 			number.add(str);
 		}
-		cheker.setInvoiceNum(number);
-		cheker.setInvoiceHead(Head);
+		System.out.println(Head);
+		System.out.println(number.toString());
+		this.invoiceNum=number;
+		this.invoiceHead=Head;
 	}
 	
 	public void removeInvoiceNumber() {
-		cheker.setInvoiceHead(null);
-		cheker.setInvoiceNum(null);
+		this.invoiceHead=null;
+		this.invoiceNum=null;
 	}
 	
 	public void toNextNumber() {
-		cheker.getInvoiceNum().remove(0);
+		this.invoiceNum.remove(0);
 	}
 
 	
