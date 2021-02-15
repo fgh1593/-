@@ -110,5 +110,11 @@ public class InvoiceServiceImpl implements invoiceService {
 	}
 	
 	
+	@Override
+	public int alterInvoiceNum(Integer id, String invoiceHead, String invoiceNum) {
+		return invoiceMapper.updateNumByPrimaryKey(id,invoiceHead,invoiceNum); 
+	}
+	
+	
 
 }

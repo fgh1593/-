@@ -43,6 +43,7 @@ body{
 
 .func{
 	display: none;
+	margin-top: 5%;
 }
 
 .icon{
@@ -60,9 +61,7 @@ body{
 }
 
 
-.func {
-	padding-top: 9%
-}
+
 
 .r {
 	margin-bottom: 5%;

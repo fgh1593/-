@@ -42,8 +42,10 @@
 						<td>含稅<br>金額</td>
 					</tr>
 					<tr th:each="i : ${session.invoiceReport}">
-						<td><button class="btn-sm btn-danger" th:value="${i.id}"
-								onclick="deleteInvoice(this)">移除</button></td>
+						<td>
+							<button class="btn-sm btn-danger" th:value="${i.id}" onclick="deleteInvoice(this)">移除</button>
+							<button class="btn-sm btn-success" th:value="${i.id}" onclick="alterNum(this)">修改號碼</button>
+						</td>
 						<td th:text="${i.info.invoiceTitle}"/>
 						<td th:text="${i.info.txIDNumber}"/>
 						<td th:text="${i.invoiceHead}+'-'+${i.invoiceNum}">

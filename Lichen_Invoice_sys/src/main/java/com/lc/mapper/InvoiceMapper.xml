@@ -33,11 +33,21 @@
       time = #{time,jdbcType=DATE},
       taxExclude = #{taxexclude,jdbcType=INTEGER},
       tax = #{tax,jdbcType=INTEGER},
-      taxInclude = #{taxinclude,jdbcType=INTEGER}
-      incomeInvoiceHead = #{invoiceHead, jdbcType=VARCHAR}
-      incomeInvoiceNum = #{invoiceNum, jdbcType=VARCHAR}
+      taxInclude = #{taxinclude,jdbcType=INTEGER},
+      invoiceHead = #{invoiceHead, jdbcType=VARCHAR},
+      invoiceNum = #{invoiceNum, jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateNumByPrimaryKey" parameterType="com.lc.pojo.Invoice">
+    update invoice
+    set 
+      invoiceHead = #{invoiceHead, jdbcType=VARCHAR},
+      invoiceNum = #{invoiceNum, jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select *  from invoice
     where id = #{id,jdbcType=INTEGER}

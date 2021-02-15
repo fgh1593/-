@@ -21,8 +21,53 @@ body {
 	background-color: #343a40;
 }
 </style>
+<script type="text/javascript">
+function alterInvoiceNumber(i) {
+	if($("#invoiceNum").val().length!=8){
+		alert("號碼不足8碼")
+		return false;
+	}
+
+	if($("#invoiceHead").val().length!=2){
+		alert("發票字軌不足2碼")
+		return false;
+	}
+	
+	$.ajax({
+		url : 'alterNum',
+		data : {
+			"id" : i.value,
+			"invoiceHead" : $("#invoiceHead").val(),
+			"invoiceNum" : $("#invoiceNum").val(),
+		},
+		dataType : 'html',
+		error : function() {
+			alert("系統錯誤")
+		},
+		success : function(data) {
+			if (data == "修改成功") {
+				window.opener.reload();
+				window.close();
+			}
+		},
+		type : 'POST'
+	});
+}
+</script>
 </head>
 <body>
-
+<div class="container">
+			<div class="input-group col-12 mb-3 mt-5">
+						<span class="input-group-text" id="basic-addon-b4">發票字軌</span> 
+						 <input type="text" class="form-control col-4" id="invoiceHead" oninput ="value=value.replace(/[^a-zA-Z]/g,'');this.value = this.value.toUpperCase();" maxlength="2">
+			</div>
+			<div class="input-group col-12 mb-3">
+ 						 <span class="input-group-text">發票號碼</span>
+  						 <input type="text" class="form-control" id="invoiceNum" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="8" >
+			</div>
+			<div class="row input-group justify-content-center">
+						<button class="btn btn-success col-8" type="button" th:value="${param.id}" onclick="alterInvoiceNumber(this)">修改</button>
+			</div>
+</div>
 </body>
 </html>

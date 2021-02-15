@@ -323,4 +323,17 @@ public class InvoiceController {
 		return "移除成功";
 		
 	}
+	
+	@RequestMapping("/alterNum")
+	@ResponseBody
+	public String alterInvoiceNum(Integer id,String invoiceHead,String invoiceNum) {
+		int i = invoiceServiceImpl.alterInvoiceNum(id,invoiceHead,invoiceNum);
+		if(i==1) {
+		return "修改成功";
+		}
+		return "修改失敗";
+		
+	}
+	
+	
 }
