@@ -17,6 +17,7 @@ import com.lc.pojo.Invoice;
 import com.lc.pojo.InvoiceInfo;
 import com.lc.pojo.InvoiceItem;
 import com.lc.service.invoiceService;
+import com.lc.utils.InvoiceNumberChecker;
 
 @Service
 @Transactional
@@ -30,7 +31,8 @@ public class InvoiceServiceImpl implements invoiceService {
 	private InvoiceItemMapper invoiceItemMapper;
 	@Autowired
 	private InvoiceInfoMapper invoiceInfoMapper;
-	
+	@Autowired
+	private InvoiceNumberChecker invoiceNumberChecker;
 	/**
 	 *  將session中的發票儲存至資料庫，並判斷最後一筆發票資料有沒有重複
 	 *  若重複則返回 "內容與最近一筆發票資料相同，所以沒有儲存"
@@ -39,16 +41,14 @@ public class InvoiceServiceImpl implements invoiceService {
 	@Override
 	public String saveInvoice(HttpServletRequest request) {
 		Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
-		Invoice last=invoiceMapper.selectLastInvoice();
-		if(invoice.equals(last)) {
-			return "內容與最近一筆發票資料相同，所以沒有儲存"; 
-		}
 		invoiceMapper.insert(invoice);
+		invoiceNumberChecker.toNextNumber();
 		return "儲存成功";
 	}
 	
 	/**
 	 * 將session中的進項發票儲存至資料庫
+	 * 並將發票號碼跳號至下一號
 	 */
 	@Override
 	public String saveIncomeInvoice(HttpServletRequest request) {

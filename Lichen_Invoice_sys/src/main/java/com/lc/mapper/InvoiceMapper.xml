@@ -9,6 +9,8 @@
     <result column="taxExclude" jdbcType="INTEGER" property="taxexclude" />
     <result column="tax" jdbcType="INTEGER" property="tax" />
     <result column="taxInclude" jdbcType="INTEGER" property="taxinclude" />
+    <result column="invoiceHead"  jdbcType="VARCHAR" property="invoiceHead" />
+    <result column="invoiceNum"  jdbcType="VARCHAR" property="invoiceNum" />
     <association property="info" select="com.lc.mapper.InvoiceInfoMapper.selectByPrimaryKey" column="invoiceInfoID"></association>
     <association property="invoiceItem" select="com.lc.mapper.InvoiceItemMapper.selectByPrimaryKey" column="invoiceItemID"></association>
   </resultMap>
@@ -18,10 +20,10 @@
   </delete>
   <insert id="insert" parameterType="com.lc.pojo.Invoice">
     insert into invoice (id, invoiceInfoID,invoiceItemID ,time, 
-      taxExclude, tax, taxInclude
+      taxExclude, tax, taxInclude,invoiceHead,invoiceNum
       )
     values (#{id,jdbcType=INTEGER}, #{invoiceInfoID,jdbcType=INTEGER},#{invoiceItemID,jdbcType=INTEGER}, #{time,jdbcType=DATE}, 
-      #{taxexclude,jdbcType=INTEGER}, #{tax,jdbcType=INTEGER}, #{taxinclude,jdbcType=INTEGER}
+      #{taxexclude,jdbcType=INTEGER}, #{tax,jdbcType=INTEGER}, #{taxinclude,jdbcType=INTEGER},#{invoiceHead, jdbcType=VARCHAR},#{invoiceNum, jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.lc.pojo.Invoice">
@@ -32,6 +34,8 @@
       taxExclude = #{taxexclude,jdbcType=INTEGER},
       tax = #{tax,jdbcType=INTEGER},
       taxInclude = #{taxinclude,jdbcType=INTEGER}
+      incomeInvoiceHead = #{invoiceHead, jdbcType=VARCHAR}
+      incomeInvoiceNum = #{invoiceNum, jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

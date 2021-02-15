@@ -55,11 +55,13 @@ public class InvoiceController {
 	 * @param taxExclude :發票未稅金額
 	 * @param seltitle :發票抬頭
 	 * @param selitem : 發票品項
+	 * @param invoiceHead : 發票號碼字軌
+	 * @param invoiceNum : 發票號碼數字
 	 * @return no:客戶不存在，js會返回錯誤訊息   yes: js會將iframe頁面轉至 發票頁面 invoice.html
 	 */
 	@RequestMapping("/getInvoice")
 	@ResponseBody
-	public String getInvoice(String lichenid, Integer taxExclude,String seltitle,String selitem ,HttpServletRequest request) {
+	public String getInvoice(String lichenid, Integer taxExclude,String seltitle,String selitem ,String invoiceHead,String invoiceNum ,HttpServletRequest request) {
 		Customer customer = customerServiceImpl.selectByLichenID(lichenid);
 		
 		if (customer == null) {
@@ -70,6 +72,11 @@ public class InvoiceController {
 			return "notax";
 		}
 		
+		if(invoiceNum==null || invoiceHead==null) {
+			return "noNum";
+		}
+		
+		
 		InvoiceInfo info = invoiceServiceImpl.getInfo(seltitle);
 		InvoiceItem item = invoiceServiceImpl.getItem(selitem);
 		Invoice invoice = new Invoice();
@@ -78,6 +85,8 @@ public class InvoiceController {
 		invoice.setInvoiceItemID(item.getId());
 		invoice.setInfo(info);
 		invoice.setInvoiceItem(item);
+		invoice.setInvoiceHead(invoiceHead);
+		invoice.setInvoiceNum(invoiceNum);
 		invoice.setTaxexclude(taxExclude);
 		Integer tax = (int) Math.round(taxExclude * 0.05);
 		Integer taxInclude = taxExclude + tax;
@@ -285,15 +294,17 @@ public class InvoiceController {
 	
 	@RequestMapping("/getInvoiceNumber")
 	@ResponseBody
-	public String getInvoiceNumber(){
+	public String[] getInvoiceNumber(){
 		List<String> numbers = invoiceNumberCheker.getInvoiceNum();
 		if(numbers==null || numbers.size()==0) {
 			invoiceNumberCheker.setInvoiceHead(null);
-			return "no";
+			String str[]= {"no"};
+			return str;
 		}
 		String num = numbers.get(0);
 		String head=invoiceNumberCheker.getInvoiceHead();
-		String str=head+"-"+num;
+		
+		String str[]= {head,num};
 		return str;
 	}
 	

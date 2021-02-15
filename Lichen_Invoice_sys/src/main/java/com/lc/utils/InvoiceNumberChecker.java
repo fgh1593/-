@@ -35,8 +35,6 @@ public class InvoiceNumberChecker {
 			String str=String.format("%08d", i);
 			number.add(str);
 		}
-		System.out.println(Head);
-		System.out.println(number.toString());
 		this.invoiceNum=number;
 		this.invoiceHead=Head;
 	}

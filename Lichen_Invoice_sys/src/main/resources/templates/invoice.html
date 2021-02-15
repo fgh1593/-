@@ -16,7 +16,9 @@ function save(){
 			alert("系統錯誤")
 		},
 		success : function(data) {
-			alert(data);			
+			alert(data);
+			parent.toInvoice();
+			parent.$("#iframe").html("");
 		},
 		type : 'POST'
 	});
@@ -27,6 +29,7 @@ function save(){
 	<div class="no-print" id="main">
 			<div id="back">
 				<img id="papper" src="/img/invoice-papper.png"/>
+				<span id="number" th:text="${session.invoice.invoiceHead}+'-'+${session.invoice.invoiceNum}"></span>
 				<span id="time" class="font11"th:text="${#dates.format(session.invoice.time, 'yyyy-MM-dd HH:mm:ss')}"></span>
 				<span id="title"class="font12" th:text="${session.invoice.info.invoiceTitle}"></span>
 				<span id="txNumber" class="font12" th:text="'統一編號:'+${session.invoice.info.txIDNumber}"></span>

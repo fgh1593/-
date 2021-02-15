@@ -47,16 +47,20 @@ function toInvoice() {
 		url: 'getInvoiceNumber',
 		data: {
 		},
-		dataType: 'html',
+		dataType: 'JSON',
 		error: function() {
 			alert("系統錯誤")
 		},
 		success: function(data) {
-			if(data=="no"){
-				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='addInvoiceNum()'>建立發票字軌組</button>");
+			if(data[0]=="no"){
+				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='addInvoiceNum()'>建立發票號碼組</button>");
 			}else{
-			$("#invoiceNumberBox").html("<input class='form-control r1' type='text' placeholder='"+data+"' disabled>");
-			$("#invoiceNumberBox").append("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='removeInvoiceNum()'>移除發票字軌組</button>");
+			$("#invoiceNumberBox").html("");
+			$("#invoiceNumberBox").append("<span class='input-group-text'>發票號碼</span> ");
+			$("#invoiceNumberBox").append("<input id='invoiceHead' class='form-control col-2' type='text' placeholder='"+data[0]+"' value='"+data[0]+"' disabled>");
+			$("#invoiceNumberBox").append("<span class='input-group-text'>-</span> ");
+			$("#invoiceNumberBox").append("<input id='invoiceNum' class='form-control ' type='text' placeholder='"+data[1]+"' value='"+data[1]+"'  disabled>");
+			$("#invoiceNumberBox").append("<button type='button' class='btn btn-danger ' onclick='removeInvoiceNum()'>移除發票號碼</button>");
 			}
 		},
 		type: 'GET'
@@ -167,7 +171,9 @@ function getInvoice() {
 			"lichenid": $("#lichenid").val(),
 			"taxExclude": $("#taxExclude").val(),
 			"seltitle": $("#seltitle").val(),
-			"selitem": $("#selitem").val()
+			"selitem": $("#selitem").val(),
+			"invoiceHead" :$("#invoiceHead").val(),
+			"invoiceNum": $("#invoiceNum").val()
 		},
 		dataType: 'html',
 		error: function() {
@@ -179,6 +185,9 @@ function getInvoice() {
 			}
 			if(data == "notax"){
 				alert("未輸入金額")
+			}
+			if(data == "noNum"){
+				alert("未設置發票號碼")
 			}
 			if (data == "yes") {
 				$("#iframe").html('<iframe src="/invoice" frameborder="no" width="100%" height="100%">');

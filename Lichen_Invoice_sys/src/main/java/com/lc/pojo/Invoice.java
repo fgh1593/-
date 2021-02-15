@@ -17,6 +17,10 @@ public class Invoice {
 
     private Integer taxinclude;
     
+    private String invoiceHead;
+    
+    private String invoiceNum;
+    
     private InvoiceInfo info;
     
     private InvoiceItem invoiceItem;
@@ -24,6 +28,22 @@ public class Invoice {
 
     
     
+
+	public String getInvoiceHead() {
+		return invoiceHead;
+	}
+
+	public void setInvoiceHead(String invoiceHead) {
+		this.invoiceHead = invoiceHead;
+	}
+
+	public String getInvoiceNum() {
+		return invoiceNum;
+	}
+
+	public void setInvoiceNum(String invoiceNum) {
+		this.invoiceNum = invoiceNum;
+	}
 
 	public InvoiceItem getInvoiceItem() {
 		return invoiceItem;
@@ -99,11 +119,13 @@ public class Invoice {
 		this.invoiceInfoID = invoiceInfoID;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Invoice [id=" + id + ", invoiceInfoID=" + invoiceInfoID + ", invoiceItemID=" + invoiceItemID + ", time="
-				+ time + ", taxexclude=" + taxexclude + ", tax=" + tax + ", taxinclude=" + taxinclude + ", info=" + info
-				+ ", invoiceItem=" + invoiceItem + "]";
+				+ time + ", taxexclude=" + taxexclude + ", tax=" + tax + ", taxinclude=" + taxinclude + ", invoiceHead="
+				+ invoiceHead + ", invoiceNum=" + invoiceNum + ", info=" + info + ", invoiceItem=" + invoiceItem + "]";
 	}
 
 	@Override

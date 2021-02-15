@@ -84,6 +84,12 @@ body{
 	margin-left: 10%;
 }
 
+#number{
+	position: absolute;
+	z-index: 1;
+	left: 190px;
+	top :30px;	
+}
 #btn1{
 	
 	display: block;
