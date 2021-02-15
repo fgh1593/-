@@ -56,11 +56,11 @@ function toInvoice() {
 				$("#invoiceNumberBox").html("<button type='button' class='col-8 btn btn-secondary btn-block r1' onclick='addInvoiceNum()'>建立發票號碼組</button>");
 			}else{
 			$("#invoiceNumberBox").html("");
-			$("#invoiceNumberBox").append("<span class='input-group-text'>發票號碼</span> ");
+			$("#invoiceNumberBox").append("<span class='input-group-text'>號碼</span> ");
 			$("#invoiceNumberBox").append("<input id='invoiceHead' class='form-control col-2' type='text' placeholder='"+data[0]+"' value='"+data[0]+"' disabled>");
 			$("#invoiceNumberBox").append("<span class='input-group-text'>-</span> ");
 			$("#invoiceNumberBox").append("<input id='invoiceNum' class='form-control ' type='text' placeholder='"+data[1]+"' value='"+data[1]+"'  disabled>");
-			$("#invoiceNumberBox").append("<button type='button' class='btn btn-danger ' onclick='removeInvoiceNum()'>移除發票號碼</button>");
+			$("#invoiceNumberBox").append("<button type='button' class='btn btn-danger ' onclick='removeInvoiceNum()'>移除</button>");
 			}
 		},
 		type: 'GET'
