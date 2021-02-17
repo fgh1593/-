@@ -114,6 +114,14 @@ public class InvoiceServiceImpl implements invoiceService {
 	public int alterInvoiceNum(Integer id, String invoiceHead, String invoiceNum) {
 		return invoiceMapper.updateNumByPrimaryKey(id,invoiceHead,invoiceNum); 
 	}
+
+	public List<IncomeInvoice> getIncomeInvoiceReportByNum(String invoiceHeadSearch, String invoiceNumSearch) {
+		return incomeInvoiceMapper.selectByNum(invoiceHeadSearch, invoiceNumSearch);
+	}
+
+	public List<Invoice> getInvoiceReportByNum(String invoiceHeadSearch, String invoiceNumSearch) {
+		return invoiceMapper.selectByNum(invoiceHeadSearch, invoiceNumSearch);
+	}
 	
 	
 

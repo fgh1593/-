@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <meta charset="UTF-8">
-<title>利成發票系統</title>
+<title>發票進銷存系統</title>
 <link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <link rel="icon" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
@@ -92,7 +92,7 @@
 
 				<div id="income-invoice" class="func">
 					<div class="row justify-content-center r" >
-						<h3><span class="badge bg-secondary  text-white">進項發票匯入</span></h3>
+						<h4><span class="badge bg-secondary  text-white">進項發票匯入</span></h4>
 					</div>
 				
 					<div class="input-group r">
@@ -129,23 +129,45 @@
 				
 				<div id="report" class="func container">
 					<div class="row justify-content-center r" >
-						<h3><span class="badge bg-secondary  text-white">紀錄查詢</span></h3>
+						<h4><span class="badge bg-secondary  text-white">時間查詢</span></h4>
 					</div>
 					
-					<div class="input-group r">
+					<div class="input-group input-group-sm r">
+					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon-c1">開始統計時間</span> 
+					</div>
 						<input  type="date" name="startTime" id="startTime" class="form-control" 
 							aria-label="開始統計時間" aria-describedby="basic-addon-c1" autocomplete="off" />
 					</div>
 					
-					<div class="input-group r">
+					<div class="input-group input-group-sm r">
+					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon-c2">結束統計時間</span> 
+					</div>
 						<input  type="date" name="endTime" id="endTime" class="form-control" 
 							aria-label="結束統計時間" aria-describedby="basic-addon-c2" autocomplete="off" onkeydown="_key3()" />
 					</div>
 					
 					<div class="input-group justify-content-end r">
-						<button type="button" class="btn btn-secondary" onclick="searchReport()">搜尋</button>
+						<button type="button" class="btn-sm btn-secondary" onclick="searchReport()">搜尋</button>
+					</div>
+					
+					<div class="row justify-content-center r" >
+						<h4><span class="badge bg-secondary  text-white">發票號碼查詢</span></h4>
+					</div>
+					
+					<div class="input-group input-group-sm r">
+					<div class="input-group-prepend">
+						<span class="input-group-text">發票號碼</span> 
+					</div>
+						 <input type="text" class="form-control col-2" id="invoiceHeadSearch" oninput ="value=value.replace(/[^a-zA-Z]/g,'');this.value = this.value.toUpperCase();" maxlength="2">
+					<div class="input-group-append">
+ 						 <span class="input-group-text">-</span>
+ 					</div>
+  						 <input type="text" class="form-control" id="invoiceNumSearch" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="8" >
+					</div>
+					<div class="input-group justify-content-end r">
+						<button type="button" class="btn-sm btn-secondary" onclick="searchReportByNum()">搜尋</button>
 					</div>
 				</div>
 				

@@ -24,4 +24,6 @@ public interface invoiceService {
 	public int deleteInvoice(Integer id);
 	public int deleteIncomeInvoice(Integer id);
 	public int alterInvoiceNum(Integer id, String invoiceHead, String invoiceNum);
+	public List<IncomeInvoice> getIncomeInvoiceReportByNum(String invoiceHeadSearch, String invoiceNumSearch);
+	public List<Invoice> getInvoiceReportByNum(String invoiceHeadSearch, String invoiceNumSearch);
 }

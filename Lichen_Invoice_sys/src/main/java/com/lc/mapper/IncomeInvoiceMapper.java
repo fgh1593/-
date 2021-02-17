@@ -17,4 +17,6 @@ public interface IncomeInvoiceMapper {
     int updateByPrimaryKey(IncomeInvoice record);
     
     List<IncomeInvoice> selectByDate(@Param("startTime") String startTime,@Param("endTime") String endTime);
+
+	List<IncomeInvoice> selectByNum(@Param("incomeInvoiceHead")String invoiceHeadSearch,@Param("incomeInvoiceNum") String invoiceNumSearch);
 }

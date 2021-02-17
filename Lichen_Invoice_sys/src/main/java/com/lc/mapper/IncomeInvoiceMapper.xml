@@ -45,4 +45,8 @@
    <select id="selectByDate" resultMap="BaseResultMap">
     select * from incomeinvoice where time between #{startTime} and #{endTime}
   </select>
+  
+  <select id="selectByNum" resultMap="BaseResultMap">
+    select * from incomeinvoice where incomeInvoiceHead=#{incomeInvoiceHead} and incomeInvoiceNum=#{incomeInvoiceNum}
+  </select>
 </mapper>

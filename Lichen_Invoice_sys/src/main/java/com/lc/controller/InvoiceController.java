@@ -210,6 +210,40 @@ public class InvoiceController {
 	}
 	
 	
+	@RequestMapping("/searchReportByNum")
+	@ResponseBody
+	public void searchReportByNum(String invoiceHeadSearch,String invoiceNumSearch,HttpServletRequest request) throws ParseException {
+		int outTotal=0; //銷項含稅總和
+		int outTaxTotal=0;//銷項稅金總和
+		int outExTotal=0;//銷項未稅金總和
+		int incomeTotal=0;//進項含稅金總和
+		int incomeTaxTotal=0;//進項稅金總和
+		int incomeExTotal=0;//進項未稅金總和
+		List<IncomeInvoice> incomeInvoiceReport = invoiceServiceImpl.getIncomeInvoiceReportByNum(invoiceHeadSearch, invoiceNumSearch);
+		List<Invoice> invoiceReport = invoiceServiceImpl.getInvoiceReportByNum(invoiceHeadSearch, invoiceNumSearch);
+		for (IncomeInvoice incomeInvoice : incomeInvoiceReport) {
+			incomeTotal+=incomeInvoice.getIncometaxinclude();
+			incomeExTotal+=incomeInvoice.getIncometaxexclude();
+			incomeTaxTotal+=incomeInvoice.getIncometax();
+		}
+		for (Invoice invoice : invoiceReport) {
+			outTotal+=invoice.getTaxinclude();
+			outExTotal+=invoice.getTaxexclude();
+			outTaxTotal+=invoice.getTax();
+		}
+		request.getSession().setAttribute("incomeInvoiceReport", incomeInvoiceReport);
+		request.getSession().setAttribute("invoiceReport", invoiceReport);
+		request.getSession().setAttribute("outTotal",outTotal);
+		request.getSession().setAttribute("outExTotal",outExTotal);
+		request.getSession().setAttribute("outTaxTotal",outTaxTotal);
+		request.getSession().setAttribute("incomeTotal",incomeTotal);
+		request.getSession().setAttribute("incomeExTotal",incomeExTotal);
+		request.getSession().setAttribute("incomeTaxTotal",incomeTaxTotal);
+		request.getSession().setAttribute("invoiceHeadSearch",invoiceHeadSearch);
+		request.getSession().setAttribute("invoiceNumSearch",invoiceNumSearch);
+	}
+	
+	
 	
 	@RequestMapping("/deleteInvoice")
 	@ResponseBody

@@ -338,6 +338,25 @@ function searchReport() {
 	});
 }
 
+function searchReportByNum() {
+	$.ajax({
+		url: 'searchReportByNum',
+		data: {
+			"invoiceHeadSearch" : $("#invoiceHeadSearch").val(),
+			"invoiceNumSearch" : $("#invoiceNumSearch").val()
+		},
+		dataType: 'html',
+		error: function() {
+			alert("系統錯誤")
+		},
+		success: function(data) {
+				$("#iframe").html('<iframe src="/showReport" frameborder="no" width="100%" height="100%">');
+		},
+		type: 'POST'
+	});
+}
+
+
 function selectAllCus() {
 	$.ajax({
 		url: 'selectAllCus',

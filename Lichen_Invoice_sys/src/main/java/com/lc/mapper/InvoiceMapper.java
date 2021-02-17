@@ -24,4 +24,6 @@ public interface InvoiceMapper {
     List<Invoice> selectByDate(@Param("startTime") String startTime,@Param("endTime") String endTime);
 
 	int updateNumByPrimaryKey(Integer id, String invoiceHead, String invoiceNum);
+
+	List<Invoice> selectByNum(@Param("invoiceHead")String invoiceHeadSearch, @Param("invoiceNum")String invoiceNumSearch);
 }
