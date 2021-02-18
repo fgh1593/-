@@ -15,7 +15,7 @@ public interface CustomerMapper {
 
     int updateByPrimaryKey(Customer record);
     
-    Customer selectByLichenID(String lichenid);
-    
     List<Customer> selByBind(String searchCus);
+    
+    Customer selectByLichenID(String lichenid);
 }
