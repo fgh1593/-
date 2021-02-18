@@ -72,7 +72,7 @@ public class SupplierController {
 		Supplier supplier = supplierServiceImpl.selectByPrimaryKey(id);
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("supplier", supplier);
-		return "/alterSupplier";
+		return "alterSupplier";
 	}
 	
 	/**

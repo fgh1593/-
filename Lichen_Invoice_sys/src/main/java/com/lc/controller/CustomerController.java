@@ -100,7 +100,7 @@ public class CustomerController {
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
 		session.setAttribute("customer", customer);
-		return "/alterCustomer";
+		return "alterCustomer";
 	}
 	
 	/**
