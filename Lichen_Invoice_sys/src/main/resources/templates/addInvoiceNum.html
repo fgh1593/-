@@ -40,10 +40,9 @@ function setInvoiceNumber() {
 			alert("系統錯誤")
 		},
 		success : function(data) {
-			if (data == "儲存成功") {
-				window.opener.toInvoice();
-				window.close();
-			}
+			alert(data);
+			window.opener.toInvoice();
+			window.close();
 		},
 		type : 'POST'
 	});

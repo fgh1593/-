@@ -26,6 +26,7 @@ import com.lc.service.CustomerService;
 import com.lc.service.SupplierService;
 import com.lc.service.impl.InvoiceServiceImpl;
 import com.lc.utils.InvoiceNumberChecker;
+import com.lc.utils.Printer;
 
 @Controller
 public class InvoiceController {
@@ -38,6 +39,8 @@ public class InvoiceController {
 	private SupplierService supplierServiceImpl;
 	@Autowired
 	private InvoiceNumberChecker invoiceNumberCheker;
+	@Autowired
+	private Printer printer;
 	/**
 	 * 將頁面導入template資源路徑
 	 * Customer 用來校驗前端頁面資料是否有空錯誤
@@ -151,11 +154,18 @@ public class InvoiceController {
 	
 	/**
 	 * 將session中的發票儲存至資料庫，返回字串給JS顯現
+	 * @throws InterruptedException 
 	 */
 	@RequestMapping("/saveInvoice")
 	@ResponseBody
-	public String saveInvoice(HttpServletRequest request) {
-		return invoiceServiceImpl.saveInvoice(request);
+	public String saveInvoice(HttpServletRequest request) throws InterruptedException {
+		Invoice invoice = (Invoice) request.getSession().getAttribute("invoice");
+		boolean print = printer.starPrint(invoice);
+		if(print) {
+			return invoiceServiceImpl.saveInvoice(request);
+		}
+		
+		return "列印失敗請檢查印表機狀態";
 
 	}
 	
@@ -346,8 +356,9 @@ public class InvoiceController {
 	@ResponseBody
 	public String setInvoiceNum(String invoiceHead,String invoiceStartNum,String invoiceEndNum) {
 		
-		invoiceNumberCheker.setInvoiceNumber(invoiceHead, invoiceStartNum, invoiceEndNum);
-		return "儲存成功";
+		String setInvoiceNumber = invoiceNumberCheker.setInvoiceNumber(invoiceHead, invoiceStartNum, invoiceEndNum);
+		System.out.println(setInvoiceNumber);
+		return setInvoiceNumber;
 	}
 	
 	@RequestMapping("/removeInvoiceNum")

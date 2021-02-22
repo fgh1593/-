@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <title></title>
 <script type="text/javascript" src="/js/jquery-3.5.1.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/jquery-loading-master/dist/jquery.loading.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="/css/invoice.css" >
 <script type="text/javascript">
 function save(){
+	parent.$( "body" ).loading();
 	$.ajax({
 		url : 'saveInvoice',
 		data : {
@@ -17,6 +19,7 @@ function save(){
 		},
 		success : function(data) {
 			alert(data);
+			parent.$( "body" ).loading( "stop" )
 			parent.toInvoice();
 			parent.$("#iframe").html("");
 		},
@@ -40,7 +43,7 @@ function save(){
 				<span id="taxIn" class="font12" th:text="${session.invoice.taxinclude}"></span>
 			</div>
 				<div class="no-print" id="bt">
-					<button id="btn1" class="btn btn-success" onclick="print();save()" >列印發票並儲存</button>
+					<button id="btn1" class="btn btn-success" onclick="save()" >列印發票並儲存</button>
 				</div>
 		</div>
 	
