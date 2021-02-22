@@ -165,7 +165,7 @@ public class InvoiceController {
 			return invoiceServiceImpl.saveInvoice(request);
 		}
 		
-		return "列印失敗請檢查印表機狀態";
+		return "列印失敗請檢查印表機狀態，並一定要至主機處排除列印佇列的檔案";
 
 	}
 	
@@ -357,7 +357,6 @@ public class InvoiceController {
 	public String setInvoiceNum(String invoiceHead,String invoiceStartNum,String invoiceEndNum) {
 		
 		String setInvoiceNumber = invoiceNumberCheker.setInvoiceNumber(invoiceHead, invoiceStartNum, invoiceEndNum);
-		System.out.println(setInvoiceNumber);
 		return setInvoiceNumber;
 	}
 	

@@ -151,14 +151,19 @@ public class Printer implements Printable {
 			prnJob.setPrintable(this);
 			prnJob.setPrintService(printer);
 			
-			
+			//查看列印佇列是否有任務卡住需要排解
 			PrintServiceAttributeSet attributes = printer.getAttributes();
 			for (Attribute a : attributes.toArray()) {
 	            String name = a.getName();
 	            String value = attributes.get(a.getClass()).toString();
-	            System.out.println(name + " : " + value);
-	         
+	            if(name=="queued-job-count") {
+	            	if(Integer.parseInt(value)>0) {
+	            		return false;
+	            	}
+	            }
 	        }
+			
+			
 			
 			//消除預設邊界
 			HashPrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
@@ -166,9 +171,35 @@ public class Printer implements Printable {
 			//啟動列印工作
 			prnJob.print(attr);
 			
+			TimeUnit.SECONDS.sleep(14);
 			
+			//查看列印佇列是否有任務卡住需要排解
+			attributes = printer.getAttributes();
+			for (Attribute a : attributes.toArray()) {
+	            String name = a.getName();
+	            String value = attributes.get(a.getClass()).toString();
+	            if(name=="queued-job-count") {
+	            	if(Integer.parseInt(value)>0) {
+	            		TimeUnit.SECONDS.sleep(5);
+	            	}else {
+	            		return true;
+	            	}
+	            }
+	        }
 			
-			return true;
+			attributes = printer.getAttributes();
+			for (Attribute a : attributes.toArray()) {
+	            String name = a.getName();
+	            String value = attributes.get(a.getClass()).toString();
+	            if(name=="queued-job-count") {
+	            	if(Integer.parseInt(value)>0) {
+	            		return false;
+	            	}else {
+	            		return true;
+	            	}
+	            }
+	        }
+			
 			
 		} catch (PrinterException ex) {
 			ex.printStackTrace();
@@ -176,6 +207,7 @@ public class Printer implements Printable {
 			prnJob.cancel();
 			return false;
 		}
+		return false;
 
 	}
 	

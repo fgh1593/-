@@ -18,8 +18,8 @@ function save(){
 			alert("系統錯誤")
 		},
 		success : function(data) {
+			parent.$( "body" ).loading("stop")
 			alert(data);
-			parent.$( "body" ).loading( "stop" )
 			parent.toInvoice();
 			parent.$("#iframe").html("");
 		},

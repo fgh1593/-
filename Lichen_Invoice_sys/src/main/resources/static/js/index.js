@@ -75,11 +75,12 @@ function toInvoice() {
 	$(".pick").css("display", "none");
 	$("#a .pick").css("display", "block");
 	$("#a .nopick").css("display", "none");
+	$("#iframe").html('');
 }
 
 
 function addInvoiceNum(){
-	window.open('/addInvoiceNum','新增發票字軌號碼','height=300,width=300');
+	window.open('/addInvoiceNum','新增發票字軌號碼','height=300,width=600');
 }
 
 function removeInvoiceNum(){
@@ -113,7 +114,7 @@ function toReport() {
 	$("#report").css("display", "block");
 	$("#iframe").html('');
 	$("input").val("");
-		$(".nopick").css("display", "block");
+	$(".nopick").css("display", "block");
 	$(".pick").css("display", "none");
 	$("#c .pick").css("display", "block");
 	$("#c .nopick").css("display", "none");
